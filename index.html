@@ -54,6 +54,61 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-three" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/19/misheral-three/">iOS Quartz 画多边形</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/01/19/misheral-three/" class="article-date">
+  <time datetime="2016-01-19T02:24:11.000Z" itemprop="datePublished">2016-01-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为一个图标分析的界面，想要画出一个多边形，搜索了一下，发现都不大靠谱，还是自己写一个吧，写完发现，其实不难啊，人懒不成事儿，这话说的真不假！！！</p>
+<p>主要的逻辑：</p>
+<ol>
+<li>计算半径，我们按照中心点作为标准，最短边的一半做为半径；</li>
+<li>根据圆周率以及角度运算计算坐标点；</li>
+<li>连线；</li>
+<li>绘制图形；</li>
+</ol>
+<p>以下的代码以右侧端点，按照逆时针按照0度开始计算，依次算出count边形的各个端点；</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect &#123;</span><br><span class="line">    <span class="comment">// Drawing code</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextSetStrokeColorWithColor</span>(context, [<span class="built_in">UIColor</span> whiteColor]<span class="variable">.CGColor</span>);</span><br><span class="line">    <span class="built_in">CGContextSetRGBFillColor</span>(context, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 虚线，每两个像素画一个虚线，虚线长度2像素</span></span><br><span class="line">    <span class="built_in">CGFloat</span> lengths[] = &#123;<span class="number">2</span>,<span class="number">2</span>&#125;;</span><br><span class="line">    <span class="built_in">CGContextSetLineDash</span>(context, <span class="number">0</span>, lengths, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">CGContextSetLineWidth</span>(context, <span class="number">2.0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.count</span> &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableArray</span> *points = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="keyword">self</span><span class="variable">.count</span>];</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">CGPoint</span> circlePoints[<span class="keyword">self</span><span class="variable">.count</span>+<span class="number">1</span>];<span class="comment">//多边形的边</span></span><br><span class="line">    <span class="built_in">CGFloat</span> width = <span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span><span class="variable">.bounds</span>);</span><br><span class="line">    <span class="built_in">CGFloat</span> height = <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span><span class="variable">.bounds</span>);</span><br><span class="line">    <span class="built_in">CGFloat</span> radius = ABS((width &lt; height ? width : height)/<span class="number">2.0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= <span class="keyword">self</span><span class="variable">.count</span>; i ++)&#123;</span><br><span class="line">        <span class="built_in">CGPoint</span> tempPoint = <span class="built_in">CGPointZero</span>;</span><br><span class="line">        tempPoint<span class="variable">.x</span> =  width/<span class="number">2.0</span> + radius * cos(<span class="number">2</span>*i*M_PI/<span class="keyword">self</span><span class="variable">.count</span>);</span><br><span class="line">        tempPoint<span class="variable">.y</span> =  height/<span class="number">2.0</span> - radius * sin(<span class="number">2</span>*i*M_PI/<span class="keyword">self</span><span class="variable">.count</span>);</span><br><span class="line">        [points addObject:<span class="built_in">NSStringFromCGPoint</span>(tempPoint)];</span><br><span class="line">        </span><br><span class="line">        circlePoints[i-<span class="number">1</span>]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">        circlePoints[i-<span class="number">1</span>]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">1</span>) &#123;</span><br><span class="line">            circlePoints[<span class="keyword">self</span><span class="variable">.count</span>]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">            circlePoints[<span class="keyword">self</span><span class="variable">.count</span>]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">CGPoint</span> centerPoint = <span class="built_in">CGPointMake</span>(width/<span class="number">2</span>, height/<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//画半径</span></span><br><span class="line">        <span class="built_in">CGContextMoveToPoint</span>(context, centerPoint<span class="variable">.x</span>, centerPoint<span class="variable">.y</span>);</span><br><span class="line">        <span class="built_in">CGContextAddLineToPoint</span>(context, tempPoint<span class="variable">.x</span>, tempPoint<span class="variable">.y</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">CGContextAddLines</span>(context, circlePoints, <span class="keyword">self</span><span class="variable">.count</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">CGContextStrokePath</span>(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需求上，还要求，再这个图形的基础上，绘制出一个不同剃度的不规则的图形，后续将会补充说明处理过程；</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/绘图/">绘图</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="minos-misheral-two" class="article article-type-minos" itemscope itemprop="blogPost">
   <div class="article-inner">
     
