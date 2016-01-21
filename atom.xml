@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-19T02:39:25.000Z</updated>
+  <updated>2016-01-21T10:11:55.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[iOS开发]]></title>
+    <link href="http://yoursite.com/2016/01/21/misheral-four/"/>
+    <id>http://yoursite.com/2016/01/21/misheral-four/</id>
+    <published>2016-01-21T09:55:31.000Z</published>
+    <updated>2016-01-21T10:11:55.000Z</updated>
+    <content type="html"><![CDATA[<p>备注以前认识的一个错误，关于iOS开发中原子的操作的问题；</p>
+<p>在NSData的writeToFile: autolically这个方法中看到API中这样一段解释：</p>
+<blockquote>
+<p>flag</p>
+<p>If YES, the array is written to an auxiliary file, and then the auxiliary file is renamed to path. If NO, the array is written directly to path. The YES option guarantees that path, if it exists at all, won’t be corrupted even if the system should crash during writing.</p>
+</blockquote>
+<p>大意为：</p>
+<ol>
+<li>flag设置为YES，在往文件写入东西时，我们会创建一个辅助的文件写入数据，写入完成之后，再修改为正确的路径；</li>
+<li>当为NO时，直接写入文件，即便系统崩溃也不会中断，即有可能出现受污染的数据；</li>
+</ol>
+<p>在修饰属性的时候，我们也经常会看到nonautomic这个修饰词，原因在于指针的操作都是瞬时的，原子非原子的操作都无所谓；</p>
+<p>貌似我以前的认知中，这个属性是操作于是否可以并发访问一个属性的，但是想想，我们经常并发访问一个属性，倒也没什么影响，认识错误，纠正一下；</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[iOS开发过程中碰到的原子操作属性]]>
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+      <category term="原子操作" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/"/>
+    
+      <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[iOS Quartz 画多边形]]></title>

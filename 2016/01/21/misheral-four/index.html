@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS开发 - Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS开发过程中碰到的原子操作属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发">
+<meta property="og:url" content="http://yoursite.com/2016/01/21/misheral-four/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="iOS开发过程中碰到的原子操作属性">
+<meta property="og:updated_time" content="2016-01-21T10:11:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发">
+<meta name="twitter:description" content="iOS开发过程中碰到的原子操作属性">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-misheral-four" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS开发
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/01/21/misheral-four/" class="article-date">
+  <time datetime="2016-01-21T09:55:31.000Z" itemprop="datePublished">2016-01-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>备注以前认识的一个错误，关于iOS开发中原子的操作的问题；</p>
+<p>在NSData的writeToFile: autolically这个方法中看到API中这样一段解释：</p>
+<blockquote>
+<p>flag</p>
+<p>If YES, the array is written to an auxiliary file, and then the auxiliary file is renamed to path. If NO, the array is written directly to path. The YES option guarantees that path, if it exists at all, won’t be corrupted even if the system should crash during writing.</p>
+</blockquote>
+<p>大意为：</p>
+<ol>
+<li>flag设置为YES，在往文件写入东西时，我们会创建一个辅助的文件写入数据，写入完成之后，再修改为正确的路径；</li>
+<li>当为NO时，直接写入文件，即便系统崩溃也不会中断，即有可能出现受污染的数据；</li>
+</ol>
+<p>在修饰属性的时候，我们也经常会看到nonautomic这个修饰词，原因在于指针的操作都是瞬时的，原子非原子的操作都无所谓；</p>
+<p>貌似我以前的认知中，这个属性是操作于是否可以并发访问一个属性的，但是想想，我们经常并发访问一个属性，倒也没什么影响，认识错误，纠正一下；</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原子操作/">原子操作</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/19/misheral-three/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS Quartz 画多边形&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
