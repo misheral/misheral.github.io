@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/21/misheral-four/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="iOS开发过程中碰到的原子操作属性">
-<meta property="og:updated_time" content="2016-01-21T10:14:32.000Z">
+<meta property="og:updated_time" content="2016-01-21T10:15:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 原子操作autolically">
 <meta name="twitter:description" content="iOS开发过程中碰到的原子操作属性">
@@ -83,10 +83,7 @@
       
         <p>备注以前认识的一个错误，关于iOS开发中原子的操作的问题；</p>
 <p>在NSData的writeToFile: autolically这个方法中看到API中这样一段解释：</p>
-<p>flag 字段解释若下：</p>
-<blockquote>
-<p>If YES, the array is written to an auxiliary file, and then the auxiliary file is renamed to path. If NO, the array is written directly to path. The YES option guarantees that path, if it exists at all, won’t be corrupted even if the system should crash during writing.</p>
-</blockquote>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flag </span><br><span class="line"></span><br><span class="line">If YES, the<span class="instruction"> array </span>is written to an auxiliary file,<span class="instruction"> and </span>then the auxiliary file is renamed to path. If NO, the<span class="instruction"> array </span>is written directly to path. The YES option guarantees that path,<span class="instruction"> if </span>it exists at all, won’t be corrupted even<span class="instruction"> if </span>the<span class="keyword"> system</span> should crash during writing.</span><br></pre></td></tr></table></figure>
 <p>大意为：</p>
 <ol>
 <li>flag设置为YES，在往文件写入东西时，我们会创建一个辅助的文件写入数据，写入完成之后，再修改为正确的路径；</li>
