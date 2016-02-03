@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/02/misheral-six/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="iOS中block的使用遇到的问题">
-<meta property="og:updated_time" content="2016-02-03T09:20:49.000Z">
+<meta property="og:updated_time" content="2016-02-03T09:23:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIAlertController中block使用出现的问题">
 <meta name="twitter:description" content="iOS中block的使用遇到的问题">
@@ -93,8 +93,7 @@
 <p>1.设置弹出消息时，按照上面的代码来写的，有一个问题，当在一个sendAlert里面弹出一个新的alert时，原来的alert是被present出来的，没有消失掉，又要弹出新的alert，app终端就会提示已经有一个模态推出的视图；为了让它可以被推出；</p>
 <p>2.我又在present的时候做了判断，判断当前的window的rootWindow，是否有presentedViewController并且这个Controller的状态是否是isBeDismissed，有值且没有被dismiss，那有就先dismiss掉，之后再调用presented方法；但问题还在，有时会出现还没有dismiss掉，present的动作就又发起了；</p>
 <p>3.又重新找了一个方法，依然判断是否存在presentedViewController并且这个Controller的状态是否是isBeDismissed，有值且没有被dismiss，那有就先dismiss掉，在dismiss的结束block里面去present新的alert，没有的就直接present出来，这样，这个问题就避免了。</p>
-<p>###然并卵</p>
-<p>领导说,这样做其实很费力的，感觉会遗留很多问题出来（我是有点儿说不清楚，至少window这个角色我就觉得有些问题），所以没有做。</p>
+<h3 id="u7136_u5E76_u5375"><a href="#u7136_u5E76_u5375" class="headerlink" title="然并卵"></a>然并卵</h3><p>领导说,这样做其实很费力的，感觉会遗留很多问题出来（我是有点儿说不清楚，至少window这个角色我就觉得有些问题），所以没有做。</p>
 <p>我觉得，后续可以看三方的比较好的alert的处理方案，借鉴代码也是可以的，只要逻辑相通，代码的修改量不大，都是可以接受的。</p>
 <h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>突然就对UIWindow这个东西感兴趣，想要做出一个类似于UIAlertView的东西，来兼容两个版本，可我发现，UIWindow在makeKeysAndVisible这个方法上，必须要有rootViewController使我非常不明白，后续弄清楚了，再继续补充说明吧。</p>
 
