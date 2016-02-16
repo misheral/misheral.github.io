@@ -54,6 +54,61 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-seven" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/16/misheral-seven/">misheral-seven</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/02/16/misheral-seven/" class="article-date">
+  <time datetime="2016-02-16T04:03:19.000Z" itemprop="datePublished">2016-02-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近做一个店务的东西，在提交订单时客户要求输入用户的手机号码，又摸回去找以前的东西，看了一个简单的，贴出来共享一下。</p>
+<p> 以下思路：</p>
+<ul>
+<li>创建匹配语句；</li>
+<li>利用iOS内置的NSPredicate创建规则表达式；</li>
+<li>匹配目标字符串。</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">BOOL</span>)validatePhoneNumber:(<span class="built_in">NSString</span> *)number&#123;</span><br><span class="line">    <span class="built_in">BOOL</span> success = <span class="literal">NO</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *phoneRegex = <span class="string">@"1[3|5|7|8|][0-9]&#123;9&#125;"</span>;</span><br><span class="line">    <span class="built_in">NSPredicate</span> *phoneTest = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>, phoneRegex];</span><br><span class="line">    success = [phoneTest evaluateWithObject:number];</span><br><span class="line">    <span class="keyword">return</span> success;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然还会遇到匹配身份证号码，车牌号，区号这样的东西，后续会继续补充出来。</p>
+<p>其实，总的来说。只要会写表达式，都能做出来的，只是写出来的容易理解与否不大确定而已。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/手机号码验证/">手机号码验证</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-misheral-six" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -382,11 +437,11 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/skin_zoom/281.jpg?2" rel="gallery_cik56rlp7000l6028o3y9vdef">
+      <a class="article-gallery-img fancybox" href="https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/skin_zoom/281.jpg?2" rel="gallery_cikp064li000qdu28hbetvkpj">
         <img src="https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/skin_zoom/281.jpg?2" itemprop="image">
       </a>
     
-      <a class="article-gallery-img fancybox" href="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" rel="gallery_cik56rlp7000l6028o3y9vdef">
+      <a class="article-gallery-img fancybox" href="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" rel="gallery_cikp064li000qdu28hbetvkpj">
         <img src="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" itemprop="image">
       </a>
     
