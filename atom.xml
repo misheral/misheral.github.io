@@ -39,8 +39,36 @@
     <link href="http://yoursite.com/2016/03/17/misheral-eight/"/>
     <id>http://yoursite.com/2016/03/17/misheral-eight/</id>
     <published>2016-03-17T03:05:43.000Z</published>
-    <updated>2016-03-17T03:08:26.000Z</updated>
-    <content type="html"></content>
+    <updated>2016-03-17T06:27:10.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u7531JSValue__u8BA1_u7B97_u5F15_u8D77_u7684bug"><a href="#u7531JSValue__u8BA1_u7B97_u5F15_u8D77_u7684bug" class="headerlink" title="由JSValue 计算引起的bug"></a>由JSValue 计算引起的bug</h3><p>公司在做订货方面的东西，在下单界面需要根据公式计算数据结果。我们公司H老大做了一套处理方法，利用API种JSContext自带的evaluateScript方法。之前没多少项目有小数的处理，但是最近有一家客户，单款商品单价包含两位小数，出现如下情况：</p>
+<blockquote>
+<ol>
+<li>加法计算： (76.32) + (2.11) = 78.429999999</li>
+<li>乘法计算： (76.82) * 10 = 768.200000001</li>
+</ol>
+</blockquote>
+<p>后面的小数位数 可能有一定的出入，但是大致可以看出波动是在0.00000001，或者-0.00000001的出入。</p>
+<h5 id="u65B9_u6CD5_u4F7F_u7528_u9519_u8BEF_uFF1F_u6216_u8005_u662F_u7CBE_u5EA6_u7F3A_u5931_uFF1F"><a href="#u65B9_u6CD5_u4F7F_u7528_u9519_u8BEF_uFF1F_u6216_u8005_u662F_u7CBE_u5EA6_u7F3A_u5931_uFF1F" class="headerlink" title="方法使用错误？或者是精度缺失？"></a>方法使用错误？或者是精度缺失？</h5><p>我查看了代码，发现我们返回数据是用的方法竟然是JSValue的toString方法，这个方法会把真正的数据类型再转为String，强转数据有可能会造成数据丢失。</p>
+<ul>
+<li>我看API有toObject方法，就使用这个方法，但是返回的类型不是NSString了，我想按照类型再一个一个转，H领导说，为啥要那样做，不是有description吗？突然脑子反应过来，是呀，怎么把这个方法给遗忘了。</li>
+</ul>
+<p>最后使用如下代码：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JSContext *context = <span class="comment">[<span class="comment">[JSContext alloc]</span> init]</span>;</span><br><span class="line">JSValue *value = <span class="comment">[context evaluateScript:script]</span>;</span><br><span class="line">return <span class="comment">[<span class="comment">[value toObject]</span> description]</span>;</span><br></pre></td></tr></table></figure>
+<p>但是依然有一部分数据计算结果是错误的。</p>
+<h5 id="u6211_u5F88_u4E0D_u5F00_u68EE_uFF0C_u5F88_u90C1_u95F7_uFF0C_u8FD9_u662F_u4E3A_u4EC0_u4E48_u5462_uFF1F"><a href="#u6211_u5F88_u4E0D_u5F00_u68EE_uFF0C_u5F88_u90C1_u95F7_uFF0C_u8FD9_u662F_u4E3A_u4EC0_u4E48_u5462_uFF1F" class="headerlink" title="我很不开森，很郁闷，这是为什么呢？"></a>我很不开森，很郁闷，这是为什么呢？</h5><p>我朋友问了他们的技术总监，对方说，有可能在计算的过程中精确缺失掉了。</p>
+<p>突然想起，这个运算的处理是将字符串转为了数字，然后再计算的结果返回的，这么说倒是对的，然后就去查找JavaScript的计算处理，google js的精度丢失，发现还真有这么一个bug。</p>
+<h5 id="u4E16_u754C_u77AC_u95F4_u7F8E_u597D_u7684_u4E0D_u884C_u4E0D_u884C_u6EF4_uFF0C_u7136_u540E_u6211_u5C31_u5F00_u59CB_u51FA_u5404_u79CD_u998A_u4E3B_u610F"><a href="#u4E16_u754C_u77AC_u95F4_u7F8E_u597D_u7684_u4E0D_u884C_u4E0D_u884C_u6EF4_uFF0C_u7136_u540E_u6211_u5C31_u5F00_u59CB_u51FA_u5404_u79CD_u998A_u4E3B_u610F" class="headerlink" title="世界瞬间美好的不行不行滴，然后我就开始出各种馊主意"></a>世界瞬间美好的不行不行滴，然后我就开始出各种馊主意</h5><p>两种方法处理：</p>
+<p>1.固定精度法；<br>计算数据的时候，直接调用toFixed(2),这样的形式保留两位小数。</p>
+<p>2.乘除位数法；<br>计算数据的时候，直接把数据转为整数，再除以整数倍数，如（数据 * 100）/100。</p>
+<p>心情好的不行不行的。然而下午的时候java方面同事说不行，固定精度，会造成精度后面的数据直接被丢弃，不进行四舍五入，💧。</p>
+<p>乘除位数吧，加法的时候 还是有多位，他说搞不定搞不定，不行呀不行呀，怎么办呢？</p>
+<h5 id="u90A3_u600E_u4E48_u529E_uFF0C_u51C9_u62CC_uFF01_uFF01"><a href="#u90A3_u600E_u4E48_u529E_uFF0C_u51C9_u62CC_uFF01_uFF01" class="headerlink" title="那怎么办，凉拌！！"></a>那怎么办，凉拌！！</h5><p>四舍五入呀，我就去摸索四舍五入了。</p>
+<p>然后在lldb时输入</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">po</span> [[[<span class="name">JSContext</span> <span class="atom">alloc</span>] <span class="atom">init</span>] <span class="atom">evaluateScript</span>:@<span class="string">"Math.round(76.8399999*100)/100"</span>]</span><br></pre></td></tr></table></figure>
+<p>Bing🐶，出现了我想要的结果，然后就让他们修改传入公式，然后就在演示前十三分钟搞定了。</p>
+<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>精度这种东西还是要注意的，尤其是在强制转换数据的时候，有时候不小心，或者稍微大意就会造成这种错误，虽然swift里对于强转对象会有warning显示，但是还是自己严谨处理代码好些，避免类似的bug重现。</p>
+<p>附上JAvaScriptCore.h 的内容</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> JavaScriptCore_h</span><br><span class="line"><span class="hexcolor">#def</span>ine JavaScriptCore_h</span><br><span class="line"></span><br><span class="line"><span class="id">#include</span> &lt;JavaScriptCore/JavaScript.h&gt;</span><br><span class="line"><span class="id">#include</span> &lt;JavaScriptCore/JSStringRefCF.h&gt;</span><br><span class="line"></span><br><span class="line"><span class="id">#if</span> <span class="function"><span class="title">defined</span><span class="params">(__OBJC__)</span></span> &amp;&amp; JSC_OBJC_API_ENABLED</span><br><span class="line"></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSContext.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSValue.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSManagedValue.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSVirtualMachine.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSExport.h"</span></span><br><span class="line"></span><br><span class="line"><span class="id">#endif</span></span><br><span class="line"></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
     <![CDATA[由JSValue造成的计算公式数据不正确]]>
     
