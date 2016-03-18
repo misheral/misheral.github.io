@@ -62,7 +62,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/17/misheral-nine/">基于Xcode 7.1的UI Testing</a>
+      <a class="article-title" href="/2016/03/17/misheral-nine/">基于Xcode 7.1的UI Testing初探</a>
     </h1>
   
 
@@ -81,7 +81,25 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>UI Testing 是Xcode 7.1开始，对外公布的用于界面测试的方法。根据通过界面元素，审查app的运行是否正确。</p>
+<h3 id="UI_Testing_u7684_u7ED3_u6784"><a href="#UI_Testing_u7684_u7ED3_u6784" class="headerlink" title="UI Testing的结构"></a>UI Testing的结构</h3><blockquote>
+<ul>
+<li>XCUIApplication, 有点儿类似于Obecjtive 里面的UIApplication,继承于XCUIElement;</li>
+<li>XCUIElementQuery,查询试图之间的关联；</li>
+<li>XCUIElement，界面的可视化的元素，可以通过设置AccesibilityIdentifier访问，若是没有设置，可通过设置的值label,value,title唯一标示访问;</li>
+</ul>
+<p>界面部分，可以通过某个元素是否存在来检测，利用XCUIElement的exists属性。</p>
+</blockquote>
+<h3 id="u671F_u671B_u5224_u65AD"><a href="#u671F_u671B_u5224_u65AD" class="headerlink" title="期望判断"></a>期望判断</h3><p>XCUITests提供了用于判断是否达到预期效果的方法；</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#if</span> <span class="tag">XCT_NULLABLE_AVAILABLE</span></span><br><span class="line"><span class="tag">-</span> (XCTestExpectation *)<span class="tag">expectationForNotification</span>:(NSString *)<span class="tag">notificationName</span> <span class="tag">object</span>:(nullable id)<span class="tag">objectToObserve</span> <span class="tag">handler</span>:(nullable XCNotificationExpectationHandler)<span class="tag">handler</span>;</span><br><span class="line"><span class="id">#else</span></span><br><span class="line"><span class="tag">-</span> (XCTestExpectation *)<span class="tag">expectationForNotification</span>:(NSString *)<span class="tag">notificationName</span> <span class="tag">object</span>:(id)<span class="tag">objectToObserve</span> <span class="tag">handler</span>:(XCNotificationExpectationHandler)<span class="tag">handler</span>;</span><br><span class="line"><span class="id">#endif</span></span><br></pre></td></tr></table></figure>
+<p>可以设计预订的时间等待某个通知是否能接受，接受到notify,则继续执行，等待不到，则直接崩溃,抛出异常信息；</p>
+<p>比如，我在2秒钟以后发送通知，主线程直接进入等待状态：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">2</span> * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">  [[NSNotificationCenter <span class="keyword">default</span>Center]postNotificationName:<span class="keyword">state</span>Name object:nil];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"> do &#123;</span><br><span class="line">        [<span class="literal">self</span> expectationForNotification:<span class="keyword">state</span>Name object:nil handler:nil];</span><br><span class="line">        [<span class="literal">self</span> waitForExpectationsWithTimeout:second handler:nil];</span><br><span class="line">    &#125; while (<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>以上这段代码，就会在2秒钟以后正常执行，若是碰不到本地的通知，则底下超出second时间，将会崩溃。</p>
+<ul>
+<li>这里有一个细节的东西要特别注意，waitForExpectationsWithTimeout:这个方法必须是在测试的主线程执行的，若是在其他线程，则程序会崩溃，提示这个方法必须在主线程执行，这句代码以后的代码，若等待到notify,则会在sencond以后正常执行。</li>
+</ul>
+
       
     </div>
     
