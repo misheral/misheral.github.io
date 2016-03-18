@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/17/misheral-nine/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="使用过程遇到了各种狂，笔者是一个从来未了解过测试的程序媛，已经不会到抓狂的地步。">
-<meta property="og:updated_time" content="2016-03-18T06:51:04.000Z">
+<meta property="og:updated_time" content="2016-03-18T07:23:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Xcode 7.1的UI Testing初探">
 <meta name="twitter:description" content="使用过程遇到了各种狂，笔者是一个从来未了解过测试的程序媛，已经不会到抓狂的地步。">
@@ -97,6 +97,20 @@
 <p>以上这段代码，会在2秒钟以后正常执行，若是碰不到本地的通知，则底下超出second时间，将会崩溃。</p>
 <ul>
 <li>这里有一个细节的东西要特别注意，waitForExpectationsWithTimeout:这个方法必须是在测试的主线程执行的，若是在其他线程，则程序会崩溃，提示这个方法必须在主线程执行，这句代码以后的代码，若等待到notify,则会在sencond以后正常执行。</li>
+</ul>
+<p>其他相关文章如下：</p>
+<ul>
+<li><p>开源中国：<a href="http://www.oschina.net/translate/ui-testing-xcode-7?cmp" target="_blank" rel="external">http://www.oschina.net/translate/ui-testing-xcode-7?cmp</a></p>
+</li>
+<li><p>cocochina: <a href="http://www.cocoachina.com/ios/20150824/13154.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150824/13154.html</a></p>
+</li>
+<li><p>cocochina: <a href="http://www.cocoachina.com/ios/20150701/12319.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150701/12319.html</a></p>
+</li>
+</ul>
+<p>其他测试方案如下：</p>
+<ul>
+<li>UIAutomation,<a href="http://blog.manbolo.com/2012/04/08/ios-automated-tests-with-uiautomation" target="_blank" rel="external">http://blog.manbolo.com/2012/04/08/ios-automated-tests-with-uiautomation</a></li>
+<li>KIF.</li>
 </ul>
 
       
