@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-18T06:49:04.000Z</updated>
+  <updated>2016-03-18T06:51:04.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,16 +19,15 @@
     <link href="http://yoursite.com/2016/03/17/misheral-nine/"/>
     <id>http://yoursite.com/2016/03/17/misheral-nine/</id>
     <published>2016-03-17T03:06:13.000Z</published>
-    <updated>2016-03-18T06:49:04.000Z</updated>
-    <content type="html"><![CDATA[<p>UI Testing 是Xcode 7.1开始，对外公布的用于界面测试的方法。根据通过界面元素，审查app的运行是否正确。</p>
+    <updated>2016-03-18T06:51:04.000Z</updated>
+    <content type="html"><![CDATA[<p>UI Testing 是Xcode 7.1开始，Apple 对外公布的用于界面测试的方法，貌似这个一直都存在的，之前一直在内部使用，现在公开出来。该技术主要根据通过界面元素，审查app的运行是否正确。</p>
 <h3 id="UI_Testing_u7684_u7ED3_u6784"><a href="#UI_Testing_u7684_u7ED3_u6784" class="headerlink" title="UI Testing的结构"></a>UI Testing的结构</h3><ul>
 <li>XCUIApplication, 有点儿类似于Obecjtive 里面的UIApplication,继承于XCUIElement;</li>
 <li>XCUIElementQuery,查询试图之间的关联；</li>
-<li>XCUIElement，界面的可视化的元素，可以通过设置AccesibilityIdentifier访问，若是没有设置，可通过设置的值label,value,title唯一标示访问;</li>
+<li><p>XCUIElement，界面的可视化的元素，可以通过设置AccesibilityIdentifier访问，若是没有设置，可通过设置的值label,value,title唯一标示访问;</p>
+<p>  界面部分，可以通过某个元素是否存在来检测，利用XCUIElement的exists属性。</p>
+</li>
 </ul>
-<blockquote>
-<p>界面部分，可以通过某个元素是否存在来检测，利用XCUIElement的exists属性。</p>
-</blockquote>
 <h3 id="u671F_u671B_u5224_u65AD"><a href="#u671F_u671B_u5224_u65AD" class="headerlink" title="期望判断"></a>期望判断</h3><p>XCUITests提供了用于判断是否达到预期效果的方法；</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#if</span> <span class="tag">XCT_NULLABLE_AVAILABLE</span></span><br><span class="line"><span class="tag">-</span> (XCTestExpectation *)<span class="tag">expectationForNotification</span>:(NSString *)<span class="tag">notificationName</span> <span class="tag">object</span>:(nullable id)<span class="tag">objectToObserve</span> <span class="tag">handler</span>:(nullable XCNotificationExpectationHandler)<span class="tag">handler</span>;</span><br><span class="line"><span class="id">#else</span></span><br><span class="line"><span class="tag">-</span> (XCTestExpectation *)<span class="tag">expectationForNotification</span>:(NSString *)<span class="tag">notificationName</span> <span class="tag">object</span>:(id)<span class="tag">objectToObserve</span> <span class="tag">handler</span>:(XCNotificationExpectationHandler)<span class="tag">handler</span>;</span><br><span class="line"><span class="id">#endif</span></span><br></pre></td></tr></table></figure>
 <p>可以设计预订的时间等待某个通知是否能接受，接受到notify,则继续执行，等待不到，则直接崩溃,抛出异常信息。</p>
