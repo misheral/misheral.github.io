@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Hexo]]></title>
-  
+  <title><![CDATA[Misheral's blog]]></title>
+  <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
   <updated>2016-03-18T09:15:29.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name><![CDATA[John Doe]]></name>
-    
+    <name><![CDATA[Misheral Yao]]></name>
+    <email><![CDATA[plxhdm123@sina.cn]]></email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
