@@ -40,7 +40,7 @@
     <link href="http://yoursite.com/2016/03/17/misheral-nine/"/>
     <id>http://yoursite.com/2016/03/17/misheral-nine/</id>
     <published>2016-03-17T03:06:13.000Z</published>
-    <updated>2016-03-19T04:28:27.000Z</updated>
+    <updated>2016-03-19T04:31:42.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h3><p>iOS 里面大致有两种测试的方法，系统的UNIT测试，以及UIAutomation插件的方法。以前只是有听说，笔者并未过多关注这些方面的东西，13年开始接触这个行业的时候就有看到单元测试，只是不了解，主要在学习基础部分。上班两年多了，随着项目的日积月累，测试已经是一件必须提上日程的事情。但是介于不动脑子以及项目的紧迫性，大部分功能都是实现即可，不考虑性能问题，以至于现在想要做测试也是分外的困难。</p>
 <p>目前看到如下几个问题：</p>
 <ul>
@@ -75,9 +75,8 @@
 <ul>
 <li>这里有一个细节的东西要特别注意，waitForExpectationsWithTimeout:这个方法必须是在测试的主线程执行的，若是在其他线程，则程序会崩溃，提示这个方法必须在主线程执行，这句代码以后的代码，若等待到notify,则会在sencond以后正常执行。</li>
 </ul>
-<p>话外之语： </p>
-<pre><code>以前都不知道为啥H领导要这样那样的分成零散的方法去处理一段逻辑，那时的我看代码都是不停的跳转，觉得这样单独的功能分裂多块去处理，代码不严谨，但是现在我觉得，H领导很有前瞻性，这种构架对于后期开发一场有效。
-</code></pre><p>其他相关文章如下：</p>
+<h4 id="u8BDD_u5916_u4E4B_u8BED"><a href="#u8BDD_u5916_u4E4B_u8BED" class="headerlink" title="话外之语"></a>话外之语</h4><p>   以前都不知道为啥H领导要这样那样的分成零散的方法去处理一段逻辑，那时的我看代码都是不停的跳转，觉得这样单独的功能分裂多块去处理，代码不严谨，但是现在我觉得，H领导很有前瞻性，这种构架对于后期开发一场有效。</p>
+<p>其他相关文章如下：</p>
 <ul>
 <li><p>开源中国：<a href="http://www.oschina.net/translate/ui-testing-xcode-7?cmp" target="_blank" rel="external">http://www.oschina.net/translate/ui-testing-xcode-7?cmp</a></p>
 </li>
