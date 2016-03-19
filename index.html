@@ -126,7 +126,24 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>UI Testing 是Xcode 7.1开始，Apple 对外公布的用于界面测试的方法，貌似这个一直都存在的，之前一直在内部使用，现在公开出来。该技术主要根据通过界面元素，审查app的运行是否正确。</p>
+        <h3 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h3><p>iOS 里面大致有两种测试的方法，系统的UNIT测试，以及UIAutomation插件的方法。以前只是有听说，笔者并未过多关注这些方面的东西，13年开始接触这个行业的时候就有看到单元测试，只是不了解，主要在学习基础部分。上班两年多了，随着项目的日积月累，测试已经是一件必须提上日程的事情。但是介于不动脑子以及项目的紧迫性，大部分功能都是实现即可，不考虑性能问题，以至于现在想要做测试也是分外的困难。</p>
+<p>目前看到如下几个问题：</p>
+<ul>
+<li>项目负载过大；</li>
+<li>代码的冗余度过高，</li>
+<li>代码的耦合度过高；</li>
+</ul>
+<p>经分析：</p>
+<ul>
+<li><p>项目负载大，就意味着出现错误的可能性更多，也就意味着Assert的代码更多，我面对这个项目的时候，不知道该从何着手；</p>
+</li>
+<li><p>冗余度高，前期在做这个项目的时候，只想着实现功能，别让领导以为自己真的不行，就忽略了已有框架里面封装的方法，直接采用网上的方法或者处理手段，比如，获取view的图片的方法，自己费了好大的劲儿写完之后才发现，H领导已经封装了imageForView的方法，尴尬😅；</p>
+</li>
+<li><p>代码耦合度高，一个类里面定义公开的property，在其他方法里面并未直接以参数的形式传入，而是直接调用，造成测试时无法mock假的数据，类与类之间过渡依赖。</p>
+</li>
+</ul>
+<p>所以，晓得吗？我感觉自己啥都不会了，不晓得怎么去做这个测试，根本没有入手点，H领导们和别的同事一起封闭开发去了，剩下我独自啃着啃不动的干粮，哭毙了。。。</p>
+<p>UI Testing 是Xcode 7开始，Apple 对外公布的用于界面测试的方法，貌似这个一直都存在的，之前一直在内部使用，现在公开出来。该技术主要根据通过界面元素，审查app的运行是否正确。</p>
 <h3 id="UI_Testing_u7684_u7ED3_u6784"><a href="#UI_Testing_u7684_u7ED3_u6784" class="headerlink" title="UI Testing的结构"></a>UI Testing的结构</h3><ul>
 <li>XCUIApplication, 有点儿类似于Obecjtive 里面的UIApplication,继承于XCUIElement;</li>
 <li>XCUIElementQuery,查询试图之间的关联；</li>
@@ -143,7 +160,9 @@
 <ul>
 <li>这里有一个细节的东西要特别注意，waitForExpectationsWithTimeout:这个方法必须是在测试的主线程执行的，若是在其他线程，则程序会崩溃，提示这个方法必须在主线程执行，这句代码以后的代码，若等待到notify,则会在sencond以后正常执行。</li>
 </ul>
-<p>其他相关文章如下：</p>
+<p>话外之语： </p>
+<pre><code>以前都不知道为啥H领导要这样那样的分成零散的方法去处理一段逻辑，那时的我看代码都是不停的跳转，觉得这样单独的功能分裂多块去处理，代码不严谨，但是现在我觉得，H领导很有前瞻性，这种构架对于后期开发一场有效。
+</code></pre><p>其他相关文章如下：</p>
 <ul>
 <li><p>开源中国：<a href="http://www.oschina.net/translate/ui-testing-xcode-7?cmp" target="_blank" rel="external">http://www.oschina.net/translate/ui-testing-xcode-7?cmp</a></p>
 </li>
@@ -152,7 +171,7 @@
 <li><p>cocochina: <a href="http://www.cocoachina.com/ios/20150701/12319.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150701/12319.html</a></p>
 </li>
 </ul>
-<p>其他测试方案如下：</p>
+<h3 id="u5176_u4ED6_u6D4B_u8BD5"><a href="#u5176_u4ED6_u6D4B_u8BD5" class="headerlink" title="其他测试"></a>其他测试</h3><p>其他测试方案如下：</p>
 <ul>
 <li>UIAutomation,<a href="http://blog.manbolo.com/2012/04/08/ios-automated-tests-with-uiautomation" target="_blank" rel="external">http://blog.manbolo.com/2012/04/08/ios-automated-tests-with-uiautomation</a></li>
 <li>KIF.</li>
