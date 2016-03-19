@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-18T09:15:29.000Z</updated>
+  <updated>2016-03-19T04:47:59.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,9 +19,25 @@
     <link href="http://yoursite.com/2016/03/18/misheral-ten/"/>
     <id>http://yoursite.com/2016/03/18/misheral-ten/</id>
     <published>2016-03-18T09:11:55.000Z</published>
-    <updated>2016-03-18T09:15:29.000Z</updated>
+    <updated>2016-03-19T04:47:59.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u8FD9_u662F_u4EC0_u4E48_u5462_3F"><a href="#u8FD9_u662F_u4EC0_u4E48_u5462_3F" class="headerlink" title="这是什么呢?"></a>这是什么呢?</h3><p>通常我们在写注释的时候，要打很多烦躁的代码，这个工具便于我们快速的在一个类或者方法前面生成一个注释代码。</p>
-<h3 id="u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5"><a href="#u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5" class="headerlink" title="如何使用和安装"></a>如何使用和安装</h3>]]></content>
+<h3 id="u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5"><a href="#u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5" class="headerlink" title="如何使用和安装"></a>如何使用和安装</h3><p>github地址如下：</p>
+<p><a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external">https://github.com/onevcat/VVDocumenter-Xcode</a></p>
+<ul>
+<li><p>下载应用，在mac上运行;</p>
+</li>
+<li><p>本机进入/Users/Name/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/,能看到多出一个插件VVDocumenter-Xcode.xcplugin；</p>
+</li>
+<li><p>重启Xcode；</p>
+</li>
+</ul>
+<p>在类或者方法的前面，打 <strong>///</strong>即可快速添加注释。</p>
+<pre><code>若想修改快捷方式，可在Xcode－Window下点击VVDocumenter，弹出的面板上可以选择性设置。
+</code></pre><p>好吧，这就是它伟大的配置方法，该插件出自我们伟大的喵神。</p>
+<p>然而，它也有不尽人意之处，每次升级Xcode以后，都不能再使用该快捷键，需重新再运行一次。</p>
+<h3 id="u55B5_u795E_u7684_u539F_u521B"><a href="#u55B5_u795E_u7684_u539F_u521B" class="headerlink" title="喵神的原创"></a>喵神的原创</h3><p>有好多很厉害的开发呢，没事儿的时候可以多和高手学习一下。</p>
+<p>onevcat blog address ： <a href="http://onev.cat" target="_blank" rel="external">http://onev.cat</a></p>
+]]></content>
     <summary type="html">
     <![CDATA[快速注释代码]]>
     
@@ -40,19 +56,19 @@
     <link href="http://yoursite.com/2016/03/17/misheral-nine/"/>
     <id>http://yoursite.com/2016/03/17/misheral-nine/</id>
     <published>2016-03-17T03:06:13.000Z</published>
-    <updated>2016-03-19T04:31:42.000Z</updated>
+    <updated>2016-03-19T04:37:43.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h3><p>iOS 里面大致有两种测试的方法，系统的UNIT测试，以及UIAutomation插件的方法。以前只是有听说，笔者并未过多关注这些方面的东西，13年开始接触这个行业的时候就有看到单元测试，只是不了解，主要在学习基础部分。上班两年多了，随着项目的日积月累，测试已经是一件必须提上日程的事情。但是介于不动脑子以及项目的紧迫性，大部分功能都是实现即可，不考虑性能问题，以至于现在想要做测试也是分外的困难。</p>
 <p>目前看到如下几个问题：</p>
 <ul>
 <li>项目负载过大；</li>
-<li>代码的冗余度过高，</li>
+<li>代码的冗余度过高;</li>
 <li>代码的耦合度过高；</li>
 </ul>
 <p>经分析：</p>
 <ul>
-<li><p>项目负载大，就意味着出现错误的可能性更多，也就意味着Assert的代码更多，我面对这个项目的时候，不知道该从何着手；</p>
+<li><p>项目负载大，就意味着出现错误的可能性更多，也就意味着Assert的代码更多，我面对这个项目的时候，不知道该从何着手。</p>
 </li>
-<li><p>冗余度高，前期在做这个项目的时候，只想着实现功能，别让领导以为自己真的不行，就忽略了已有框架里面封装的方法，直接采用网上的方法或者处理手段，比如，获取view的图片的方法，自己费了好大的劲儿写完之后才发现，H领导已经封装了imageForView的方法，尴尬😅；</p>
+<li><p>冗余度高，前期在做这个项目的时候，只想着实现功能，别让领导以为自己真的不行，就忽略了已有框架里面封装的方法，直接采用网上的方法或者处理手段，比如，获取view的图片的方法，自己费了好大的劲儿写完之后才发现，H领导已经封装了imageForView的方法，尴尬😅。</p>
 </li>
 <li><p>代码耦合度高，一个类里面定义公开的property，在其他方法里面并未直接以参数的形式传入，而是直接调用，造成测试时无法mock假的数据，类与类之间过渡依赖。</p>
 </li>

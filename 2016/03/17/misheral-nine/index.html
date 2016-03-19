@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/03/17/misheral-nine/index.html">
 <meta property="og:site_name" content="Misheral's blog">
 <meta property="og:description" content="使用过程遇到了各种狂，笔者是一个从来未了解过测试的程序媛，已经不会到抓狂的地步。">
-<meta property="og:updated_time" content="2016-03-19T04:31:42.000Z">
+<meta property="og:updated_time" content="2016-03-19T04:37:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Xcode 7.1的UI Testing初探">
 <meta name="twitter:description" content="使用过程遇到了各种狂，笔者是一个从来未了解过测试的程序媛，已经不会到抓狂的地步。">
@@ -85,14 +85,14 @@
 <p>目前看到如下几个问题：</p>
 <ul>
 <li>项目负载过大；</li>
-<li>代码的冗余度过高，</li>
+<li>代码的冗余度过高;</li>
 <li>代码的耦合度过高；</li>
 </ul>
 <p>经分析：</p>
 <ul>
-<li><p>项目负载大，就意味着出现错误的可能性更多，也就意味着Assert的代码更多，我面对这个项目的时候，不知道该从何着手；</p>
+<li><p>项目负载大，就意味着出现错误的可能性更多，也就意味着Assert的代码更多，我面对这个项目的时候，不知道该从何着手。</p>
 </li>
-<li><p>冗余度高，前期在做这个项目的时候，只想着实现功能，别让领导以为自己真的不行，就忽略了已有框架里面封装的方法，直接采用网上的方法或者处理手段，比如，获取view的图片的方法，自己费了好大的劲儿写完之后才发现，H领导已经封装了imageForView的方法，尴尬😅；</p>
+<li><p>冗余度高，前期在做这个项目的时候，只想着实现功能，别让领导以为自己真的不行，就忽略了已有框架里面封装的方法，直接采用网上的方法或者处理手段，比如，获取view的图片的方法，自己费了好大的劲儿写完之后才发现，H领导已经封装了imageForView的方法，尴尬😅。</p>
 </li>
 <li><p>代码耦合度高，一个类里面定义公开的property，在其他方法里面并未直接以参数的形式传入，而是直接调用，造成测试时无法mock假的数据，类与类之间过渡依赖。</p>
 </li>
