@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-19T04:47:59.000Z</updated>
+  <updated>2016-03-26T13:02:16.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,23 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[iOS开发中分页处理以及界面刷新]]></title>
+    <link href="http://yoursite.com/2016/03/26/misheral-11/"/>
+    <id>http://yoursite.com/2016/03/26/misheral-11/</id>
+    <published>2016-03-26T12:56:37.000Z</published>
+    <updated>2016-03-26T13:02:16.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+      <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[VVDocumenter-Xcode 的使用]]></title>
