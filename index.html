@@ -54,6 +54,121 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-13" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/07/misheral-13/">iOS开发之CocoaPods的使用说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/07/misheral-13/" class="article-date">
+  <time datetime="2016-04-07T02:10:44.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h4><p>在开发的过程中，我们经常使用到第三方的库，很多人会采用直接拖入代码的形式，但是这种处理方法不够便捷，伟大的牛牛们做出来可以用来方便的统一管理这些第三方库。</p>
+<p>页面链接：   <a href="https://cocoapods.org/" target="_blank" rel="external">https://cocoapods.org/</a></p>
+<p>github地址：<a href="https://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods</a></p>
+<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.获取镜像</p>
+<p>终端输入如下命令（把Ruby镜像指向taobao，避免被墙，你懂得）</p>
+<p>gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a><br>gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a><br>gem sources -l  （用来检查使用替换镜像位置成功）</p>
+<p>2.下载安装CocoaPods</p>
+<p>终端输入：sudo gem install cocoapods</p>
+<p>3.使用CocoaPods</p>
+<p>创建项目</p>
+<blockquote>
+<p>新建一个项目，终端切入到项目的根目录(cd 目录)；</p>
+</blockquote>
+<p>创建配置文件</p>
+<blockquote>
+<p>建立Podfile文件，创建配置文件，终端输入 </p>
+</blockquote>
+<pre><code>touch Podfile
+</code></pre><p>编辑配置文件</p>
+<blockquote>
+<p>编辑Podfile文件，终端输入 </p>
+</blockquote>
+<pre><code>vim Podfile
+</code></pre><p>键盘输入 i，进入编辑模式，输入</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span>, </span><br><span class="line">pod <span class="string">'MBProgressHUD'</span>, <span class="string">'~&gt; 0.9.1'</span></span><br></pre></td></tr></table></figure>
+<p>文件内，说明了，使用的平台，pod的对象以及pod对象的版本号，可以引入多个三方库，新起一行pod即可。</p>
+<p>具体输入的版本号是多少，可以采用如下命令查看：</p>
+<p> pod search MBProgressHUD</p>
+<p>比如我现在查看一下我自己的，结果如下：</p>
+<pre><code>MisheraldeMacBook-Pro:~ Misheral$ pod search MBProgressHUD
+
+
+-&gt; MBProgressHUD (0.9.1)
+   An iOS activity indicator view.
+   pod &apos;MBProgressHUD&apos;, &apos;~&gt; 0.9.1&apos;
+   - Homepage: http://www.bukovinski.com
+   - Source:   https://github.com/matej/MBProgressHUD.git
+   - Versions: 0.9.1, 0.9, 0.8, 0.7, 0.6, 0.5 [master repo]
+
+
+-&gt; MBProgressHUD+BWMExtension (1.0.0)
+   Nihility-Ming to MBProgressHUD extension, easy to use.
+   pod &apos;MBProgressHUD+BWMExtension&apos;, &apos;~&gt; 1.0.0&apos;
+   - Homepage: https://github.com/Nihility-Ming/MBProgressHUD-BWMEXtension
+   - Source:   https://github.com/Nihility-Ming/MBProgressHUD-BWMEXtension.git
+   - Versions: 1.0.0 [master repo]
+
+
+-&gt; MBProgressHUDExtensions (0.0.1)
+   UIViewController extensions for displaying an MBProgressHUD
+   pod &apos;MBProgressHUDExtensions&apos;, &apos;~&gt; 0.0.1&apos;
+   - Homepage: https://github.com/SymmetricInfinity/MBProgressHUDExtensions
+   - Source:   https://github.com/SymmetricInfinity/MBProgressHUDExtensions.git
+   - Versions: 0.0.1 [master repo]
+
+
+-&gt; MBProgressHUDExtensions@donly (0.3)
+   UIViewController extensions for displaying an MBProgressHUD
+   pod &apos;MBProgressHUDExtensions@donly&apos;, &apos;~&gt; 0.3&apos;
+   - Homepage: https://github.com/donly/MBProgressHUDExtensions
+   - Source:   https://github.com/donly/MBProgressHUDExtensions.git
+   - Versions: 0.3, 0.2, 0.1 [master repo]
+</code></pre><p>项目安装使用</p>
+<pre><code>pod install
+</code></pre><p>安装成功，你会在根目录看到很多文件，并且看到一个后缀为xcworkspace的文件，那么，请注意，以后打开项目，就点击这个文件了。（这个错误我是经常犯的）</p>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>过程还是蛮简单的，只不过我貌似不常用，大部分的三方库在现在的项目中都已经封装好了，直接使用。</p>
+<p>想要查询可以使用哪些第三方的库，可以在CocoaPods的官网，search一下。</p>
+<blockquote>
+<p>注意，我使用的是chrome，但是查看不到每个库pod语句，必须在safari上点击查看。</p>
+</blockquote>
+<p>可能在使用的过程中有时候会比较慢，耐心的等待一下，就OK，像我昨天，在公司弄的时候，网络不好，我就趁着安装的过程，看了微博，微信空间啥的，合理利用碎片时间，奥，影响貌似不大好。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-misheral-12" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -104,7 +219,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_cimh5x0b600008128dk3ho7om">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_cimpogmpl0000p628bddgb0kx">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" itemprop="image">
       </a>
     
@@ -612,61 +727,6 @@
       <footer class="article-footer">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原子操作/">原子操作</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-three" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/19/misheral-three/">iOS Quartz 画多边形</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/01/19/misheral-three/" class="article-date">
-  <time datetime="2016-01-19T02:24:11.000Z" itemprop="datePublished">2016-01-19</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为一个图标分析的界面，想要画出一个多边形，搜索了一下，发现都不大靠谱，还是自己写一个吧，写完发现，其实不难啊，人懒不成事儿，这话说的真不假！！！</p>
-<p>主要的逻辑：</p>
-<ol>
-<li>计算半径，我们按照中心点作为标准，最短边的一半做为半径；</li>
-<li>根据圆周率以及角度运算计算坐标点；</li>
-<li>连线；</li>
-<li>绘制图形；</li>
-</ol>
-<p>以下的代码以右侧端点，按照逆时针按照0度开始计算，依次算出count边形的各个端点；</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect &#123;</span><br><span class="line">    <span class="comment">// Drawing code</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextSetStrokeColorWithColor</span>(context, [<span class="built_in">UIColor</span> whiteColor]<span class="variable">.CGColor</span>);</span><br><span class="line">    <span class="built_in">CGContextSetRGBFillColor</span>(context, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 虚线，每两个像素画一个虚线，虚线长度2像素</span></span><br><span class="line">    <span class="built_in">CGFloat</span> lengths[] = &#123;<span class="number">2</span>,<span class="number">2</span>&#125;;</span><br><span class="line">    <span class="built_in">CGContextSetLineDash</span>(context, <span class="number">0</span>, lengths, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">CGContextSetLineWidth</span>(context, <span class="number">2.0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.count</span> &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableArray</span> *points = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="keyword">self</span><span class="variable">.count</span>];</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">CGPoint</span> circlePoints[<span class="keyword">self</span><span class="variable">.count</span>+<span class="number">1</span>];<span class="comment">//多边形的边</span></span><br><span class="line">    <span class="built_in">CGFloat</span> width = <span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span><span class="variable">.bounds</span>);</span><br><span class="line">    <span class="built_in">CGFloat</span> height = <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span><span class="variable">.bounds</span>);</span><br><span class="line">    <span class="built_in">CGFloat</span> radius = ABS((width &lt; height ? width : height)/<span class="number">2.0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= <span class="keyword">self</span><span class="variable">.count</span>; i ++)&#123;</span><br><span class="line">        <span class="built_in">CGPoint</span> tempPoint = <span class="built_in">CGPointZero</span>;</span><br><span class="line">        tempPoint<span class="variable">.x</span> =  width/<span class="number">2.0</span> + radius * cos(<span class="number">2</span>*i*M_PI/<span class="keyword">self</span><span class="variable">.count</span>);</span><br><span class="line">        tempPoint<span class="variable">.y</span> =  height/<span class="number">2.0</span> - radius * sin(<span class="number">2</span>*i*M_PI/<span class="keyword">self</span><span class="variable">.count</span>);</span><br><span class="line">        [points addObject:<span class="built_in">NSStringFromCGPoint</span>(tempPoint)];</span><br><span class="line">        </span><br><span class="line">        circlePoints[i-<span class="number">1</span>]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">        circlePoints[i-<span class="number">1</span>]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">1</span>) &#123;</span><br><span class="line">            circlePoints[<span class="keyword">self</span><span class="variable">.count</span>]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">            circlePoints[<span class="keyword">self</span><span class="variable">.count</span>]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">CGPoint</span> centerPoint = <span class="built_in">CGPointMake</span>(width/<span class="number">2</span>, height/<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//画半径</span></span><br><span class="line">        <span class="built_in">CGContextMoveToPoint</span>(context, centerPoint<span class="variable">.x</span>, centerPoint<span class="variable">.y</span>);</span><br><span class="line">        <span class="built_in">CGContextAddLineToPoint</span>(context, tempPoint<span class="variable">.x</span>, tempPoint<span class="variable">.y</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">CGContextAddLines</span>(context, circlePoints, <span class="keyword">self</span><span class="variable">.count</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">CGContextStrokePath</span>(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需求上，还要求，再这个图形的基础上，绘制出一个不同剃度的不规则的图形，后续将会补充说明处理过程；</p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/绘图/">绘图</a></li></ul>
 
       </footer>
     
