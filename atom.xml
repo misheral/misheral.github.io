@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-07T02:41:25.000Z</updated>
+  <updated>2016-04-07T02:44:36.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,29 +19,21 @@
     <link href="http://yoursite.com/2016/04/07/misheral-13/"/>
     <id>http://yoursite.com/2016/04/07/misheral-13/</id>
     <published>2016-04-07T02:10:44.000Z</published>
-    <updated>2016-04-07T02:41:25.000Z</updated>
+    <updated>2016-04-07T02:44:36.000Z</updated>
     <content type="html"><![CDATA[<h4 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h4><p>在开发的过程中，我们经常使用到第三方的库，很多人会采用直接拖入代码的形式，但是这种处理方法不够便捷，伟大的牛牛们做出来可以用来方便的统一管理这些第三方库。</p>
 <p>页面链接：   <a href="https://cocoapods.org/" target="_blank" rel="external">https://cocoapods.org/</a></p>
 <p>github地址：<a href="https://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods</a></p>
 <h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.获取镜像</p>
 <p>终端输入如下命令（把Ruby镜像指向taobao，避免被墙，你懂得）</p>
-<p>gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a><br>gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a><br>gem sources -l  （用来检查使用替换镜像位置成功）</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove <span class="string">https:</span><span class="comment">//rubygems.org/ </span></span><br><span class="line">gem sources -a <span class="string">https:</span><span class="comment">//ruby.taobao.org/ </span></span><br><span class="line">gem sources -l  （用来检查使用替换镜像位置成功）</span><br></pre></td></tr></table></figure>
 <p>2.下载安装CocoaPods</p>
-<p>终端输入：sudo gem install cocoapods</p>
-<p>3.使用CocoaPods</p>
-<p>创建项目</p>
-<blockquote>
-<p>新建一个项目，终端切入到项目的根目录(cd 目录)；</p>
-</blockquote>
-<p>创建配置文件</p>
-<blockquote>
-<p>建立Podfile文件，创建配置文件，终端输入 </p>
-</blockquote>
+<p>终端输入：</p>
+<pre><code>sudo gem install cocoapods
+</code></pre><p>3.使用CocoaPods</p>
+<pre><code>新建一个项目，终端切入到项目的根目录(cd 目录)；
+</code></pre><p>建立Podfile文件，创建配置文件，终端输入 </p>
 <pre><code>touch Podfile
-</code></pre><p>编辑配置文件</p>
-<blockquote>
-<p>编辑Podfile文件，终端输入 </p>
-</blockquote>
+</code></pre><p>编辑Podfile文件，终端输入 </p>
 <pre><code>vim Podfile
 </code></pre><p>键盘输入 i，进入编辑模式，输入</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span>, </span><br><span class="line">pod <span class="string">'MBProgressHUD'</span>, <span class="string">'~&gt; 0.9.1'</span></span><br></pre></td></tr></table></figure>
@@ -87,10 +79,8 @@
 </code></pre><p>安装成功，你会在根目录看到很多文件，并且看到一个后缀为xcworkspace的文件，那么，请注意，以后打开项目，就点击这个文件了。（这个错误我是经常犯的）</p>
 <h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>过程还是蛮简单的，只不过我貌似不常用，大部分的三方库在现在的项目中都已经封装好了，直接使用。</p>
 <p>想要查询可以使用哪些第三方的库，可以在CocoaPods的官网，search一下。</p>
-<blockquote>
-<p>注意，我使用的是chrome，但是查看不到每个库pod语句，必须在safari上点击查看。</p>
-</blockquote>
-<p>可能在使用的过程中有时候会比较慢，耐心的等待一下，就OK，像我昨天，在公司弄的时候，网络不好，我就趁着安装的过程，看了微博，微信空间啥的，合理利用碎片时间，奥，影响貌似不大好。</p>
+<pre><code>注意，我使用的是chrome，但是查看不到每个库pod语句，必须在safari上点击查看。
+</code></pre><p>可能在使用的过程中有时候会比较慢，耐心的等待一下，就OK，像我昨天，在公司弄的时候，网络不好，我就趁着安装的过程，看了微博，微信空间啥的，合理利用碎片时间，奥，影响貌似不大好。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h4 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h4><p>在开发的过程中，我们经常使用到第三方的库，很多人会采用直接拖入代码的形式，但是这种处理方法不够便捷，伟大]]>
