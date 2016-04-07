@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-07T02:46:43.000Z</updated>
+  <updated>2016-04-07T02:47:50.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2016/04/07/misheral-13/"/>
     <id>http://yoursite.com/2016/04/07/misheral-13/</id>
     <published>2016-04-07T02:10:44.000Z</published>
-    <updated>2016-04-07T02:46:43.000Z</updated>
+    <updated>2016-04-07T02:47:50.000Z</updated>
     <content type="html"><![CDATA[<h4 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h4><p>在开发的过程中，我们经常使用到第三方的库，很多人会采用直接拖入代码的形式，但是这种处理方法不够便捷，伟大的牛牛们做出来可以用来方便的统一管理这些第三方库。</p>
 <p>页面链接：   <a href="https://cocoapods.org/" target="_blank" rel="external">https://cocoapods.org/</a></p>
 <p>github地址：<a href="https://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods</a></p>
@@ -37,7 +37,7 @@
 <pre><code>vim Podfile
 </code></pre><p>键盘输入 i，进入编辑模式，输入</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span>, </span><br><span class="line">pod <span class="string">'MBProgressHUD'</span>, <span class="string">'~&gt; 0.9.1'</span></span><br></pre></td></tr></table></figure>
-<p>文件内，说明了，使用的平台，pod的对象以及pod对象的版本号，可以引入多个三方库，新起一行pod即可。</p>
+<p>文件内，说明了使用的平台、pod的对象以及pod对象的版本号，可以同时引入多个三方库，新起一行pod即可。</p>
 <p>具体输入的版本号是多少，可以采用如下命令查看：</p>
 <pre><code>pod search MBProgressHUD
 </code></pre><p>比如我现在查看一下我自己的，结果如下：</p>
