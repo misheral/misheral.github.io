@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/01/12/misheral-two/</loc>
+    <lastmod>2016-04-08T01:46:00.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/04/07/misheral-13/</loc>
     <lastmod>2016-04-07T02:58:33.000Z</lastmod>
   </url>
@@ -69,11 +74,6 @@
   <url>
     <loc>http://yoursite.com/2016/01/19/misheral-three/</loc>
     <lastmod>2016-01-19T02:39:25.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/01/12/misheral-two/</loc>
-    <lastmod>2016-01-13T06:20:52.000Z</lastmod>
   </url>
   
 </urlset>
