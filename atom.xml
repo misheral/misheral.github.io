@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-07T02:58:33.000Z</updated>
+  <updated>2016-04-15T17:04:10.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[iOS 工程中的逆向传值的方法]]></title>
+    <link href="http://yoursite.com/2016/04/16/misheral-14/"/>
+    <id>http://yoursite.com/2016/04/16/misheral-14/</id>
+    <published>2016-04-15T16:43:41.000Z</published>
+    <updated>2016-04-15T17:04:10.000Z</updated>
+    <content type="html"><![CDATA[<p>在项目内，我们通常需要处理界面之间的数据传递，主要的处理方式有一下几种：</p>
+<pre><code>1. 属性传值；
+2. 方法参数传值；
+3. delegate传值；
+4. block回调方法传值；
+5. notification，发送通知传递数据信息；
+6. 单例修改数据传值；
+7. 全局属性传值；
+8. NSUserDeaults 传值，属于单例传值的一种；
+</code></pre><p>以上几种方法处理逆向传值，都是OK的。</p>
+<p>在修改一个项目中，H领导说想要实现不确定的方法来传值，而不是像代理和block那样，必须实现既定的方法。他写了一套方法，给后面的VC添加target和selector,后面的方法去按照给到的selector去响应。正好，API内包括一个NSInvocation,可以设置target,selector,argument,我们可以按照这个来拿。</p>
+<p>在响应的事件后，可以获取NSInvocation的参数，利用参数，然后响应消息。</p>
+<p>处理方法有一下几种：</p>
+<ol>
+<li>performSelector，注意此方法最多可以传递两个参数；</li>
+<li>可以objc运行时的方法objc_msgSend来转发消息；</li>
+<li>利用NSInvocation的信息去invoke这个方法。</li>
+</ol>
+<p>第一种方法，在主线程运行，只能传递一个参数；<br>第二种方法，在运行时会提示，Too many arguments to function call,expected 0,have 3，需做修改：</p>
+<p>Build Setting–&gt; Apple LLVM 7.0 - Preprocessing–&gt; Enable Strict Checking of objc_msgSend Calls  改为 NO.</p>
+<p>但是不晓得为啥，我用了第二种第三种方法传递带了两个参数的selector，没执行好。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在项目内，我们通常需要处理界面之间的数据传递，主要的处理方式有一下几种：</p>
+<pre><code>1. 属性传值；
+2. 方法参数传值；
+3. delegate传值；
+4. block回调方法传值；
+5. notification，发送通知传递数据信息；
+6. 单例修]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+      <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[iOS开发之CocoaPods的使用说明]]></title>
