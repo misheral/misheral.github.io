@@ -63,9 +63,9 @@
     <link href="http://yoursite.com/2016/04/07/misheral-13/"/>
     <id>http://yoursite.com/2016/04/07/misheral-13/</id>
     <published>2016-04-07T02:10:44.000Z</published>
-    <updated>2016-04-07T02:58:33.000Z</updated>
+    <updated>2016-04-27T02:15:20.000Z</updated>
     <content type="html"><![CDATA[<h4 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h4><p>在开发的过程中，我们经常使用到第三方的库，很多人会采用直接拖入代码的形式，但是这种处理方法不够便捷，伟大的牛牛们做出来可以用来方便的统一管理这些第三方库。</p>
-<p>页面链接：   <a href="https://cocoapods.org/" target="_blank" rel="external">https://cocoapods.org/</a></p>
+<p>cocoapods：   <a href="https://cocoapods.org/" target="_blank" rel="external">https://cocoapods.org/</a></p>
 <p>github地址：<a href="https://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods</a></p>
 <h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.获取镜像</p>
 <p>终端输入如下命令（把Ruby镜像指向taobao，避免被墙，你懂得）</p>
@@ -123,7 +123,7 @@
 </code></pre><p>安装成功，你会在根目录看到很多文件，并且看到一个后缀为xcworkspace的文件。</p>
 <pre><code>那么，请注意，以后打开项目，不在是prj文件，而是点击xcworkspace文件了。（这个错误我是经常犯的）
 </code></pre><h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>过程还是蛮简单的，只不过我貌似不常用，大部分的三方库在现在的项目中都已经封装好了，直接使用。</p>
-<p>想要查询可以使用哪些第三方的库，可以在CocoaPods的官网，search一下。</p>
+<p>想要查询可以使用哪些第三方的库，可以在<a href="https://cocoapods.org/" target="_blank" rel="external">CocoaPods</a>的官网，search一下。</p>
 <pre><code>注意，我使用的是chrome，有时查看不到pod语句，可以用safari，鼠标移动到小图标上面，实时显示pod语句。
 </code></pre><p>可能在使用的过程中有时候会比较慢，耐心的等待一下，就OK，像我昨天，在公司弄的时候，网络不好，我就趁着安装的过程，看了微博，微信空间啥的，合理利用碎片时间，奥，影响貌似不大好。</p>
 ]]></content>
