@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-15T17:04:10.000Z</updated>
+  <updated>2016-04-27T01:58:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2016/04/16/misheral-14/"/>
     <id>http://yoursite.com/2016/04/16/misheral-14/</id>
     <published>2016-04-15T16:43:41.000Z</published>
-    <updated>2016-04-15T17:04:10.000Z</updated>
+    <updated>2016-04-27T01:58:33.000Z</updated>
     <content type="html"><![CDATA[<p>在项目内，我们通常需要处理界面之间的数据传递，主要的处理方式有一下几种：</p>
 <pre><code>1. 属性传值；
 2. 方法参数传值；
