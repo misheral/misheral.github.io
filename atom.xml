@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-27T01:58:33.000Z</updated>
+  <updated>2016-05-11T02:43:06.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[budding项目小结]]></title>
+    <link href="http://yoursite.com/2016/05/11/misheral-15/"/>
+    <id>http://yoursite.com/2016/05/11/misheral-15/</id>
+    <published>2016-05-11T02:33:04.000Z</published>
+    <updated>2016-05-11T02:43:06.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="u9879_u76EE_u63CF_u8FF0"><a href="#u9879_u76EE_u63CF_u8FF0" class="headerlink" title="项目描述"></a>项目描述</h4><h6 id="u76EE_u7684"><a href="#u76EE_u7684" class="headerlink" title="目的"></a>目的</h6><p>目前档口市场处于传统的做单形式，手写单子、手动记账，该软件有助于档口市场的高效开单以及对账，用软件代替手工处理单据，并事实给出报表数据。</p>
+<h6 id="u529F_u80FD"><a href="#u529F_u80FD" class="headerlink" title="功能"></a>功能</h6><p>分为以下几个领域：</p>
+<ol>
+<li>创建商家入驻，或者店员身份申请审核；</li>
+<li>商品列表以及单据信息；</li>
+<li>客户列表以及单据信息；</li>
+<li>销售单的数据信息；</li>
+<li>管理员身份，具有店铺采购的功能，也可以在云市场发起采购；</li>
+<li>可以发展线下用户，会按照发展下线的方式，给出一定比的红包；</li>
+<li>商家的老板可以购买月套餐以及年套餐，支持多用户级；</li>
+<li>线上的账户可以对账户余额进行提现；</li>
+<li>报表数据查看；</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="u9879_u76EE_u63CF_u8FF0"><a href="#u9879_u76EE_u63CF_u8FF0" class="headerlink" title="项目描述"></a>项目描述</h4><h6 id="u76EE_u7684"><a hre]]>
+    </summary>
+    
+      <category term="测试" scheme="http://yoursite.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="总结" scheme="http://yoursite.com/categories/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[iOS 工程中的逆向传值的方法]]></title>

@@ -54,6 +54,66 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-five" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/22/misheral-five/">iOS 绘制不规则的图形</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/01/22/misheral-five/" class="article-date">
+  <time datetime="2016-01-22T06:00:17.000Z" itemprop="datePublished">2016-01-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="u903B_u8F91_u5206_u6790"><a href="#u903B_u8F91_u5206_u6790" class="headerlink" title="逻辑分析"></a>逻辑分析</h4><p>主要的逻辑：</p>
+<ol>
+<li>设置不规则图形的顶点；</li>
+<li>获取当前的上下文；</li>
+<li>CGContextBeginPath(context);</li>
+<li>顶点连线；</li>
+<li>设置填充颜色；</li>
+<li>CGContextClosePath(context);</li>
+<li>填充颜色；</li>
+</ol>
+<h4 id="u5177_u4F53_u4EE3_u7801"><a href="#u5177_u4F53_u4EE3_u7801" class="headerlink" title="具体代码"></a>具体代码</h4><p>设置一个属性为points，在set方法内去调用重新绘制图形；</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setPoints:(<span class="built_in">NSArray</span> *)points&#123;</span><br><span class="line">    _points = points;</span><br><span class="line">    [<span class="keyword">self</span> setNeedsDisplay];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重写UIView的方法drawRect:,实现绘图；</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect&#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> p[<span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span> &lt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span>; i ++) &#123;</span><br><span class="line">        <span class="built_in">CGPoint</span> tempPoint = <span class="built_in">CGPointFromString</span>([<span class="keyword">self</span><span class="variable">.points</span> objectAtIndex:i]);</span><br><span class="line">        p[i]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">        p[i]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">    <span class="built_in">CGContextBeginPath</span>(context);</span><br><span class="line">    <span class="built_in">CGContextAddLines</span>(context, p, <span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span>);</span><br><span class="line">    [[<span class="built_in">UIColor</span> colorWithRed:<span class="number">39</span>/<span class="number">255.0</span> green:<span class="number">170</span>/<span class="number">255.0</span> blue:<span class="number">226</span>/<span class="number">255.0</span> alpha:<span class="number">1</span>] setFill];</span><br><span class="line">    <span class="built_in">CGContextClosePath</span>(context);</span><br><span class="line">    <span class="built_in">CGContextFillPath</span>(context);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：CGContextAddLines这个方法的第二个参数是个C的数组，也可以说是指针；</p>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>经常会忘记的，就是beginPath这个动作，和closePath是成对出现的。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/绘图/">绘图</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-misheral-four" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -170,7 +230,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/OldLibrary_ZH-CN12553861473_1920x1080.jpg" rel="gallery_cini876rj0008mh28yisswezr">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/OldLibrary_ZH-CN12553861473_1920x1080.jpg" rel="gallery_cio29hk180008ik28c8u050dr">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/OldLibrary_ZH-CN12553861473_1920x1080.jpg" itemprop="image">
       </a>
     
@@ -273,7 +333,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/VernalEquinoxOrchid_ZH-CN10226406786_1920x1080.jpg" rel="gallery_cini876s3000ymh283q15p4p5">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/VernalEquinoxOrchid_ZH-CN10226406786_1920x1080.jpg" rel="gallery_cio29hk1s000yik286q93avhc">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/VernalEquinoxOrchid_ZH-CN10226406786_1920x1080.jpg" itemprop="image">
       </a>
     
