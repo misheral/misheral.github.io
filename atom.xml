@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-11T02:43:06.000Z</updated>
+  <updated>2016-06-24T08:55:59.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[UIContol的高亮状态]]></title>
+    <link href="http://yoursite.com/2016/06/24/misheral-h6/"/>
+    <id>http://yoursite.com/2016/06/24/misheral-h6/</id>
+    <published>2016-06-24T08:44:16.000Z</published>
+    <updated>2016-06-24T08:55:59.000Z</updated>
+    <content type="html"><![CDATA[<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="property">@property</span>(nonatomic,getter=isHighlighted) BOOL highlighted;                         </span><br><span class="line"> <span class="regexp">//</span> default <span class="keyword">is</span> NO. <span class="keyword">this</span> gets set/cleared automatically <span class="keyword">when</span> touch enters/exits during tracking <span class="keyword">and</span> cleared <span class="literal">on</span> up</span><br></pre></td></tr></table></figure>
+<p>  高亮状态，highlighted,比如UIButton的高亮，就是当你手按下button按钮时的状态，可以放置两张不同的照片来看一下，很明显就能看到。</p>
+<p>通常在对视觉问题的处理上，用到这个属性，但是我们H领导会有这样的习惯，尽可能的少自己创建属性，使用系统本身提供的属性，这次，在做一个UIcollectionViewCell的选中状态显示事件时，他用到了这个属性，他是在cell最顶部的一个小view上使用了这个属性，但是当我们手指按在cell上时，cell的点击事件就被激活，并将整个高亮显示的状态显示在子view上，导致出现，不该显示的时间显示状态的情况。</p>
+<p>最初，我在看到这种使用方法的时候，我还是蛮赞叹的，节省了开发的成本，便捷偷巧的使用系统属性，然而后期还是觉得这种讨巧的处理方法，在界面的显示上并不讨巧，或者会造成视觉上的bug，从这个角度上来说，反而加大了开发力度。</p>
+<p>故而，写出这篇文章作为备注。警醒一下那些有这个习惯的码工们，也警示自己。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pr]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+      <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[budding项目小结]]></title>
     <link href="http://yoursite.com/2016/05/11/misheral-15/"/>
     <id>http://yoursite.com/2016/05/11/misheral-15/</id>
     <published>2016-05-11T02:33:04.000Z</published>
-    <updated>2016-05-11T02:43:06.000Z</updated>
+    <updated>2016-05-11T10:04:20.000Z</updated>
     <content type="html"><![CDATA[<h4 id="u9879_u76EE_u63CF_u8FF0"><a href="#u9879_u76EE_u63CF_u8FF0" class="headerlink" title="项目描述"></a>项目描述</h4><h6 id="u76EE_u7684"><a href="#u76EE_u7684" class="headerlink" title="目的"></a>目的</h6><p>目前档口市场处于传统的做单形式，手写单子、手动记账，该软件有助于档口市场的高效开单以及对账，用软件代替手工处理单据，并事实给出报表数据。</p>
 <h6 id="u529F_u80FD"><a href="#u529F_u80FD" class="headerlink" title="功能"></a>功能</h6><p>分为以下几个领域：</p>
 <ol>
