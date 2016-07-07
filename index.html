@@ -54,6 +54,63 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-17" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/07/misheral-17/">bug纪录（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/07/misheral-17/" class="article-date">
+  <time datetime="2016-07-07T07:27:19.000Z" itemprop="datePublished">2016-07-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BUG/">BUG</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="u95EE_u9898_u4FE1_u606F_u63CF_u8FF0"><a href="#u95EE_u9898_u4FE1_u606F_u63CF_u8FF0" class="headerlink" title="问题信息描述"></a>问题信息描述</h4><p>发现时间：2016-07-06</p>
+<p>现象：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016-07-06</span> <span class="number">18:18:42.237</span> Pudding[<span class="number">5035:1874119</span>] _BSMachError: (os/kern) invalid capability (20)</span><br><span class="line"><span class="number">2016-07-06</span> <span class="number">18:18:42.238</span> Pudding[<span class="number">5035:1874119</span>] _BSMachError: (os/kern) invalid name (15)</span><br></pre></td></tr></table></figure>
+<p>描述：</p>
+<p>在UIViewController的viewWillAppear 和 viewDidAppear 之间 在 console 段抛出如下错误，底层信息，造成耗时，耗时时间约为1秒半。</p>
+<h4 id="u5173_u4E8E_u89E3_u51B3"><a href="#u5173_u4E8E_u89E3_u51B3" class="headerlink" title="关于解决"></a>关于解决</h4><p>出现原因：</p>
+<p>可能由于viewWillAppear、viewDidLayoutSubviews、viewDidAppear方法内代码书写不规范早层。所以我采用逐段log、逐段注销的方法，发现viewWillAppear内的一段代码造成此错误的抛出。通常还是在数据量大，subview过多时抛出错误信息。</p>
+<p>处理方法：<br>查看stack overflow 上弄的帖子，看到的解决方案。</p>
+<p>采用如下两种方法均可：</p>
+<p>（1）async一个main，代码</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">dispatch_async</span>(<span class="function">dispatch_get_main_queue</span>(), ^&#123;</span><br><span class="line">       <span class="comment">//代码</span></span><br><span class="line">   </span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>(2) dispatch_after 0.2秒执行代码</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">dispatch_after</span>(<span class="function">dispatch_time</span>(DISPATCH_TIME_NOW, (int64_t)(<span class="number">0.2</span> * NSEC_PER_SEC)), <span class="tag">dispatch_get_main_queue</span>(), ^&#123;</span><br><span class="line">        <span class="comment">//代码</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bug/">bug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-misheral-h6" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -166,7 +223,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" rel="gallery_cipti7rka001ud528vsjdpp6q">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" rel="gallery_ciqc0aak20020wy28rlidoq1j">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" itemprop="image">
       </a>
     
@@ -391,7 +448,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_cipti7rhl0000d528tu2kmboe">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_ciqc0aahg0000wy28wzjzgebh">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" itemprop="image">
       </a>
     
@@ -668,63 +725,6 @@
       <footer class="article-footer">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-seven" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/16/misheral-seven/">匹配电话号码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/02/16/misheral-seven/" class="article-date">
-  <time datetime="2016-02-16T04:03:19.000Z" itemprop="datePublished">2016-02-16</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近做一个店务的东西，在提交订单时客户要求输入用户的手机号码，又摸回去找以前的东西，看了一个简单的，贴出来共享一下。</p>
-<p> 以下思路：</p>
-<ul>
-<li>创建匹配语句；</li>
-<li>利用iOS内置的NSPredicate创建规则表达式；</li>
-<li>匹配目标字符串。</li>
-</ul>
-<p>简单的代码如下：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">BOOL</span>)validatePhoneNumber:(<span class="built_in">NSString</span> *)number&#123;</span><br><span class="line">    <span class="built_in">BOOL</span> success = <span class="literal">NO</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *phoneRegex = <span class="string">@"1[3|5|7|8|][0-9]&#123;9&#125;"</span>;</span><br><span class="line">    <span class="built_in">NSPredicate</span> *phoneTest = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>, phoneRegex];</span><br><span class="line">    success = [phoneTest evaluateWithObject:number];</span><br><span class="line">    <span class="keyword">return</span> success;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是仔细说起来的话，这样的写法还是不正确的，精确的写法如下：（来自网络）</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正则判断手机号码格式</span></span><br><span class="line">+ (<span class="built_in">BOOL</span>)validatePhone:(<span class="built_in">NSString</span> *)phone</span><br><span class="line">&#123;</span><br><span class="line">       <span class="comment">/**</span><br><span class="line">        * 手机号码</span><br><span class="line">        * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188</span><br><span class="line">        * 联通：130,131,132,152,155,156,185,186</span><br><span class="line">        * 电信：133,1349,153,180,189</span><br><span class="line">        */</span></span><br><span class="line">       <span class="built_in">NSString</span> * MOBILE = <span class="string">@"^1(3[0-9]|5[0-35-9]|8[025-9])\\d&#123;8&#125;$"</span>;</span><br><span class="line">       <span class="comment">/**</span><br><span class="line">        10         * 中国移动：China Mobile</span><br><span class="line">        11         * 134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188</span><br><span class="line">        12         */</span></span><br><span class="line">       <span class="built_in">NSString</span> * CM = <span class="string">@"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d&#123;7&#125;$"</span>;</span><br><span class="line">       <span class="comment">/**</span><br><span class="line">        15         * 中国联通：China Unicom</span><br><span class="line">        16         * 130,131,132,152,155,156,185,186</span><br><span class="line">        17         */</span></span><br><span class="line">       <span class="built_in">NSString</span> * CU = <span class="string">@"^1(3[0-2]|5[256]|8[56])\\d&#123;8&#125;$"</span>;</span><br><span class="line">       <span class="comment">/**</span><br><span class="line">        20         * 中国电信：China Telecom</span><br><span class="line">        21         * 133,1349,153,180,189</span><br><span class="line">        22         */</span></span><br><span class="line">       <span class="built_in">NSString</span> * CT = <span class="string">@"^1((33|53|8[09])[0-9]|349)\\d&#123;7&#125;$"</span>;</span><br><span class="line">       <span class="comment">/**</span><br><span class="line">        25         * 大陆地区固话及小灵通</span><br><span class="line">        26         * 区号：010,020,021,022,023,024,025,027,028,029</span><br><span class="line">        27         * 号码：七位或八位</span><br><span class="line">        28         */</span></span><br><span class="line">      <span class="comment">// NSString * PHS = @"^0(10|2[0-5789]|\\d&#123;3&#125;)\\d&#123;7,8&#125;$";</span></span><br><span class="line"></span><br><span class="line">     <span class="built_in">NSPredicate</span> *regextestmobile = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>, MOBILE];</span><br><span class="line">     <span class="built_in">NSPredicate</span> *regextestcm = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>, CM];</span><br><span class="line">     <span class="built_in">NSPredicate</span> *regextestcu = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>, CU];</span><br><span class="line">     <span class="built_in">NSPredicate</span> *regextestct = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>, CT];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (([regextestmobile evaluateWithObject:phone] == <span class="literal">YES</span>)</span><br><span class="line">    || ([regextestcm evaluateWithObject:phone] == <span class="literal">YES</span>)</span><br><span class="line">    || ([regextestct evaluateWithObject:phone] == <span class="literal">YES</span>)</span><br><span class="line">    || ([regextestcu evaluateWithObject:phone] == <span class="literal">YES</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>([regextestcm evaluateWithObject:phone] == <span class="literal">YES</span>) &#123;</span><br><span class="line">          <span class="built_in">NSLog</span>(<span class="string">@"China Mobile"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>([regextestct evaluateWithObject:phone] == <span class="literal">YES</span>) &#123;</span><br><span class="line">          <span class="built_in">NSLog</span>(<span class="string">@"China Telecom"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ([regextestcu evaluateWithObject:phone] == <span class="literal">YES</span>) &#123;</span><br><span class="line">          <span class="built_in">NSLog</span>(<span class="string">@"China Unicom"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="built_in">NSLog</span>(<span class="string">@"Unknow"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然还会遇到匹配身份证号码，车牌号，区号这样的东西，后续会继续补充出来。</p>
-<p>其实，总的来说。只要会写表达式，都能做出来的，只是写出来的容易理解与否不大确定而已。</p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/手机号码验证/">手机号码验证</a></li></ul>
 
       </footer>
     
