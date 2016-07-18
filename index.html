@@ -54,6 +54,93 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/18/misheral-19/">misheral-19</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/18/misheral-19/" class="article-date">
+  <time datetime="2016-07-18T05:30:39.000Z" itemprop="datePublished">2016-07-18</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-misheral-18" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/18/misheral-18/">知识点汇总（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/18/misheral-18/" class="article-date">
+  <time datetime="2016-07-18T05:30:31.000Z" itemprop="datePublished">2016-07-18</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>NSObject的class方法。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MViewStage</span> : <span class="title">UIViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MViewStage</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"self.class = %@"</span>,[<span class="keyword">self</span> class]);</span><br><span class="line">     <span class="built_in">NSLog</span>(<span class="string">@"super.class = %@"</span>,[<span class="keyword">self</span> class]);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"self.superClass = %@"</span>,[<span class="keyword">self</span> superclass]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>如图所示，我想打印出继承自UIViewController的一个子类MViewStage，打印出self.class，super.class，self.superClass，这三个的值，按照之前的认知，第一个和最后一个毋庸置疑，分别是，MViewStage和UIViewController，只有第二个，super，我认为要打印的是super的class，应该是UIViewController。但是打印结果如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span>-<span class="number">07</span>-<span class="number">18</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">36.139</span> RunTimeLearning[<span class="number">6892</span>:<span class="number">79426</span>] self.<span class="keyword">class</span> = MViewStage</span><br><span class="line"><span class="number">2016</span>-<span class="number">07</span>-<span class="number">18</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">36.139</span> RunTimeLearning[<span class="number">6892</span>:<span class="number">79426</span>] super.<span class="keyword">class</span> = MViewStage</span><br><span class="line"><span class="number">2016</span>-<span class="number">07</span>-<span class="number">18</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">36.139</span> RunTimeLearning[<span class="number">6892</span>:<span class="number">79426</span>] self.superClass = UIViewController</span><br></pre></td></tr></table></figure>
+<p>很明显super.class打印出的内容是当前对象的类MViewStage。</p>
+<p>！！！为什么呢？</p>
+<p>API中查看可以看到如下描述信息：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="keyword">Class</span>)<span class="keyword">class</span></span><br><span class="line">Description	</span><br><span class="line">Returns the <span class="keyword">class</span> <span class="keyword">object</span> <span class="keyword">for</span> the receiver’s <span class="keyword">class</span>.</span><br><span class="line">The <span class="keyword">class</span> <span class="keyword">object</span> <span class="keyword">for</span> the receiver’s <span class="keyword">class</span>.</span><br></pre></td></tr></table></figure>
+<p>可以看出，class返回的类是当前selector的接受者，上例所述的MViewStage的对象，因此返回类型为MViewStage。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-misheral-17" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -223,7 +310,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" rel="gallery_ciqc0aak20020wy28rlidoq1j">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" rel="gallery_ciqrmrqu50024p9287grlz72y">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" itemprop="image">
       </a>
     
@@ -448,7 +535,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_ciqc0aahg0000wy28wzjzgebh">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_ciqrmrqra0000p928q18cn1kt">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" itemprop="image">
       </a>
     
@@ -548,183 +635,6 @@
       <footer class="article-footer">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/remark/">remark</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-nine" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/17/misheral-nine/">基于Xcode 7.1的UI Testing初探</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/03/17/misheral-nine/" class="article-date">
-  <time datetime="2016-03-17T03:06:13.000Z" itemprop="datePublished">2016-03-17</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h3><p>iOS 里面大致有两种测试的方法，系统的UNIT测试，以及UIAutomation插件的方法。以前只是有听说，笔者并未过多关注这些方面的东西，13年开始接触这个行业的时候就有看到单元测试，只是不了解，主要在学习基础部分。上班两年多了，随着项目的日积月累，测试已经是一件必须提上日程的事情。但是介于不动脑子以及项目的紧迫性，大部分功能都是实现即可，不考虑性能问题，以至于现在想要做测试也是分外的困难。</p>
-<p>目前看到如下几个问题：</p>
-<ul>
-<li>项目负载过大；</li>
-<li>代码的冗余度过高;</li>
-<li>代码的耦合度过高；</li>
-</ul>
-<p>经分析：</p>
-<ul>
-<li><p>项目负载大，就意味着出现错误的可能性更多，也就意味着Assert的代码更多，我面对这个项目的时候，不知道该从何着手。</p>
-</li>
-<li><p>冗余度高，前期在做这个项目的时候，只想着实现功能，别让领导以为自己真的不行，就忽略了已有框架里面封装的方法，直接采用网上的方法或者处理手段，比如，获取view的图片的方法，自己费了好大的劲儿写完之后才发现，H领导已经封装了imageForView的方法，尴尬😅。</p>
-</li>
-<li><p>代码耦合度高，一个类里面定义公开的property，在其他方法里面并未直接以参数的形式传入，而是直接调用，造成测试时无法mock假的数据，类与类之间过渡依赖。</p>
-</li>
-</ul>
-<p>所以，晓得吗？我感觉自己啥都不会了，不晓得怎么去做这个测试，根本没有入手点，H领导们和别的同事一起封闭开发去了，剩下我独自啃着啃不动的干粮，哭毙了。。。</p>
-<p>UI Testing 是Xcode 7开始，Apple 对外公布的用于界面测试的方法，貌似这个一直都存在的，之前一直在内部使用，现在公开出来。该技术主要根据通过界面元素，审查app的运行是否正确。</p>
-<h3 id="UI_Testing_u7684_u7ED3_u6784"><a href="#UI_Testing_u7684_u7ED3_u6784" class="headerlink" title="UI Testing的结构"></a>UI Testing的结构</h3><ul>
-<li>XCUIApplication, 有点儿类似于Obecjtive 里面的UIApplication,继承于XCUIElement;</li>
-<li>XCUIElementQuery,查询试图之间的关联；</li>
-<li><p>XCUIElement，界面的可视化的元素，可以通过设置AccesibilityIdentifier访问，若是没有设置，可通过设置的值label,value,title唯一标示访问;</p>
-<p>  界面部分，可以通过某个元素是否存在来检测，利用XCUIElement的exists属性。</p>
-</li>
-</ul>
-<h3 id="u671F_u671B_u5224_u65AD"><a href="#u671F_u671B_u5224_u65AD" class="headerlink" title="期望判断"></a>期望判断</h3><p>XCUITests提供了用于判断是否达到预期效果的方法；</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#if</span> <span class="tag">XCT_NULLABLE_AVAILABLE</span></span><br><span class="line"><span class="tag">-</span> (XCTestExpectation *)<span class="tag">expectationForNotification</span>:(NSString *)<span class="tag">notificationName</span> <span class="tag">object</span>:(nullable id)<span class="tag">objectToObserve</span> <span class="tag">handler</span>:(nullable XCNotificationExpectationHandler)<span class="tag">handler</span>;</span><br><span class="line"><span class="id">#else</span></span><br><span class="line"><span class="tag">-</span> (XCTestExpectation *)<span class="tag">expectationForNotification</span>:(NSString *)<span class="tag">notificationName</span> <span class="tag">object</span>:(id)<span class="tag">objectToObserve</span> <span class="tag">handler</span>:(XCNotificationExpectationHandler)<span class="tag">handler</span>;</span><br><span class="line"><span class="id">#endif</span></span><br></pre></td></tr></table></figure>
-<p>可以设计预订的时间等待某个通知是否能接受，接受到notify,则继续执行，等待不到，则直接崩溃,抛出异常信息。</p>
-<p>比如，我在2秒钟以后发送通知，主线程直接进入等待状态：</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">2</span> * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">  [[NSNotificationCenter <span class="keyword">default</span>Center]postNotificationName:<span class="keyword">state</span>Name object:nil];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"> do &#123;</span><br><span class="line">        [<span class="literal">self</span> expectationForNotification:<span class="keyword">state</span>Name object:nil handler:nil];</span><br><span class="line">        [<span class="literal">self</span> waitForExpectationsWithTimeout:second handler:nil];</span><br><span class="line">    &#125; while (<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<p>以上这段代码，会在2秒钟以后正常执行，若是碰不到本地的通知，则底下超出second时间，将会崩溃。</p>
-<ul>
-<li>这里有一个细节的东西要特别注意，waitForExpectationsWithTimeout:这个方法必须是在测试的主线程执行的，若是在其他线程，则程序会崩溃，提示这个方法必须在主线程执行，这句代码以后的代码，若等待到notify,则会在sencond以后正常执行。</li>
-</ul>
-<h4 id="u8BDD_u5916_u4E4B_u8BED"><a href="#u8BDD_u5916_u4E4B_u8BED" class="headerlink" title="话外之语"></a>话外之语</h4><p>   以前都不知道为啥H领导要这样那样的分成零散的方法去处理一段逻辑，那时的我看代码都是不停的跳转，觉得这样单独的功能分裂多块去处理，代码不严谨，但是现在我觉得，H领导很有前瞻性，这种构架对于后期开发一场有效。</p>
-<p>其他相关文章如下：</p>
-<ul>
-<li><p>开源中国：<a href="http://www.oschina.net/translate/ui-testing-xcode-7?cmp" target="_blank" rel="external">http://www.oschina.net/translate/ui-testing-xcode-7?cmp</a></p>
-</li>
-<li><p>cocochina: <a href="http://www.cocoachina.com/ios/20150824/13154.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150824/13154.html</a></p>
-</li>
-<li><p>cocochina: <a href="http://www.cocoachina.com/ios/20150701/12319.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150701/12319.html</a></p>
-</li>
-</ul>
-<h3 id="u5176_u4ED6_u6D4B_u8BD5"><a href="#u5176_u4ED6_u6D4B_u8BD5" class="headerlink" title="其他测试"></a>其他测试</h3><p>其他测试方案如下：</p>
-<ul>
-<li>UIAutomation,<a href="http://blog.manbolo.com/2012/04/08/ios-automated-tests-with-uiautomation" target="_blank" rel="external">http://blog.manbolo.com/2012/04/08/ios-automated-tests-with-uiautomation</a></li>
-<li>KIF.</li>
-</ul>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI-Testing/">UI Testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-eight" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/17/misheral-eight/">JSValue计算数学公式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/03/17/misheral-eight/" class="article-date">
-  <time datetime="2016-03-17T03:05:43.000Z" itemprop="datePublished">2016-03-17</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="u7531JSValue__u8BA1_u7B97_u5F15_u8D77_u7684bug"><a href="#u7531JSValue__u8BA1_u7B97_u5F15_u8D77_u7684bug" class="headerlink" title="由JSValue 计算引起的bug"></a>由JSValue 计算引起的bug</h3><p>公司在做订货方面的东西，在下单界面需要根据公式计算数据结果。我们公司H老大做了一套处理方法，利用API种JSContext自带的evaluateScript方法。之前没多少项目有小数的处理，但是最近有一家客户，单款商品单价包含两位小数，出现如下情况：</p>
-<ul>
-<li><p>加法计算： (76.32) + (2.11) = 78.429999999</p>
-</li>
-<li><p>乘法计算： (76.82) * 10 = 768.200000001</p>
-</li>
-</ul>
-<p>后面的小数位数 可能有一定的出入，但是大致可以看出波动是在0.00000001，或者-0.00000001的出入。</p>
-<h5 id="u65B9_u6CD5_u4F7F_u7528_u9519_u8BEF_uFF1F_u6216_u8005_u662F_u7CBE_u5EA6_u7F3A_u5931_uFF1F"><a href="#u65B9_u6CD5_u4F7F_u7528_u9519_u8BEF_uFF1F_u6216_u8005_u662F_u7CBE_u5EA6_u7F3A_u5931_uFF1F" class="headerlink" title="方法使用错误？或者是精度缺失？"></a>方法使用错误？或者是精度缺失？</h5><p>我查看了代码，发现我们返回数据是用的方法竟然是JSValue的toString方法，这个方法会把真正的数据类型再转为String，强转数据有可能会造成数据丢失。</p>
-<ul>
-<li>我看API有toObject方法，就使用这个方法，但是返回的类型不是NSString了，我想按照类型再一个一个转，H领导说，为啥要那样做，不是有description吗？突然脑子反应过来，是呀，怎么把这个方法给遗忘了。</li>
-</ul>
-<p>最后使用如下代码：</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JSContext *context = <span class="comment">[<span class="comment">[JSContext alloc]</span> init]</span>;</span><br><span class="line">JSValue *value = <span class="comment">[context evaluateScript:script]</span>;</span><br><span class="line">return <span class="comment">[<span class="comment">[value toObject]</span> description]</span>;</span><br></pre></td></tr></table></figure>
-<p>但是依然有一部分数据计算结果是错误的。</p>
-<h5 id="uD83D_uDC76_u5F88_u4E0D_u5F00_u68EE_uFF0C_u5F88_u90C1_u95F7_uFF0C_u8FD9_u662F_u4E3A_u4EC0_u4E48_u5462_uFF1F"><a href="#uD83D_uDC76_u5F88_u4E0D_u5F00_u68EE_uFF0C_u5F88_u90C1_u95F7_uFF0C_u8FD9_u662F_u4E3A_u4EC0_u4E48_u5462_uFF1F" class="headerlink" title="👶很不开森，很郁闷，这是为什么呢？"></a>👶很不开森，很郁闷，这是为什么呢？</h5><p>我朋友问了他们的技术总监，对方说，有可能在计算的过程中精确缺失掉了。</p>
-<ul>
-<li>突然想起，这个运算的处理是将字符串转为了数字，然后再计算的结果返回的，这么说倒是对的，然后就去查找JavaScript的计算处理，google js的精度丢失，发现还真有这么一个bug。</li>
-</ul>
-<h5 id="u4E16_u754C_u77AC_u95F4_u7F8E_u597D_u7684_u4E0D_u884C_u4E0D_u884C_u6EF4_uFF0C_u7136_u540E_u6211_u5C31_u5F00_u59CB_u51FA_u5404_u79CD_u998A_u4E3B_u610F"><a href="#u4E16_u754C_u77AC_u95F4_u7F8E_u597D_u7684_u4E0D_u884C_u4E0D_u884C_u6EF4_uFF0C_u7136_u540E_u6211_u5C31_u5F00_u59CB_u51FA_u5404_u79CD_u998A_u4E3B_u610F" class="headerlink" title="世界瞬间美好的不行不行滴，然后我就开始出各种馊主意"></a>世界瞬间美好的不行不行滴，然后我就开始出各种馊主意</h5><p>两种方法处理：</p>
-<ul>
-<li><p>固定精度法；<br>  计算数据的时候，直接调用toFixed(2),这样的形式保留两位小数。</p>
-</li>
-<li><p>乘除位数法；<br>  计算数据的时候，直接把数据转为整数，再除以整数倍数，如（数据 * 100）/100。</p>
-</li>
-</ul>
-<p>结果呢？！！</p>
-<p>😒心情好的不行不行的。然而下午的时候java方面同事说不行。</p>
-<ul>
-<li><p>第一种，固定精度，会造成精度后面的数据直接被丢弃，不进行四舍五入😓。</p>
-</li>
-<li><p>第二种，乘除位数吧，加法的时候 还是有多位，他说搞不定搞不定，不行呀不行呀，怎么办呢？</p>
-</li>
-</ul>
-<h5 id="u90A3_u600E_u4E48_u529E_uFF0C_u51C9_u62CC_uFF01_uFF01"><a href="#u90A3_u600E_u4E48_u529E_uFF0C_u51C9_u62CC_uFF01_uFF01" class="headerlink" title="那怎么办，凉拌！！"></a>那怎么办，凉拌！！</h5><p>四舍五入呀，我就去摸索四舍五入了。</p>
-<p>断点调试，在lldb时输入</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">po</span> [[[<span class="name">JSContext</span> <span class="atom">alloc</span>] <span class="atom">init</span>] <span class="atom">evaluateScript</span>:@<span class="string">"Math.round(76.8399999*100)/100"</span>]</span><br></pre></td></tr></table></figure>
-<p>Bing🐶，出现了我想要的结果，然后就让他们修改传入公式，然后就在演示前十三分钟搞定了。</p>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>  精度这种东西还是要注意的，尤其是在强制转换数据的时候，有时候不小心，或者稍微大意就会造成这种错误，虽然swift里对于强转对象会有warning显示，但是还是自己严谨处理代码好些，避免类似的bug重现。</p>
-<p>附上JAvaScriptCore.h 的内容</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> JavaScriptCore_h</span><br><span class="line"><span class="hexcolor">#def</span>ine JavaScriptCore_h</span><br><span class="line"></span><br><span class="line"><span class="id">#include</span> &lt;JavaScriptCore/JavaScript.h&gt;</span><br><span class="line"><span class="id">#include</span> &lt;JavaScriptCore/JSStringRefCF.h&gt;</span><br><span class="line"></span><br><span class="line"><span class="id">#if</span> <span class="function"><span class="title">defined</span><span class="params">(__OBJC__)</span></span> &amp;&amp; JSC_OBJC_API_ENABLED</span><br><span class="line"></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSContext.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSValue.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSManagedValue.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSVirtualMachine.h"</span></span><br><span class="line"><span class="id">#import</span> <span class="string">"JSExport.h"</span></span><br><span class="line"></span><br><span class="line"><span class="id">#endif</span></span><br><span class="line"></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
       </footer>
     
