@@ -17,7 +17,7 @@ Attention!!!
 1.objc_msgSend(target, selector)target为receiver,selector为执行的方法。
 Attention!!! 
 继承自NSObje">
-<meta property="og:updated_time" content="2016-07-19T03:03:35.000Z">
+<meta property="og:updated_time" content="2016-07-19T03:04:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知识点汇总（二）">
 <meta name="twitter:description" content="runtime消息转发的处理代码在执行某一个方法时，代码执行performSelector的动作，在runtime上调用方法objc_msgSend方法（注意类方法的调用是objc_msgSendClass），执行过程如下：
@@ -95,19 +95,17 @@ Attention!!!
 <p>Attention!!! </p>
 <p>继承自NSObject的类都集成了一个类方法<br>+(Bool)resolveInstanceMethod:(SEL)selector的方法，内部实现机制为获取实例对象的方法列表，若有，返回true，若无，返回false；</p>
 <blockquote>
-<p>1.当为true时，进入Event Handle处理事件；</p>
-<p>2.当返回为false时，说明没有实现这个方法或者返回为nil，消息进入转发Method Forwarding （消息转发）；</p>
+<p>当为true时，进入Event Handle处理事件；<br>当返回为false时，说明没有实现这个方法或者返回为nil，消息进入转发Method Forwarding （消息转发）；</p>
 </blockquote>
 <h4 id="2-_-__28id_29forwardingTargetForSelector_3A_28SEL_29aSelector"><a href="#2-_-__28id_29forwardingTargetForSelector_3A_28SEL_29aSelector" class="headerlink" title="2. - (id)forwardingTargetForSelector:(SEL)aSelector"></a>2. - (id)forwardingTargetForSelector:(SEL)aSelector</h4><p>aSelector 待处理的消息，返回一个对象，用于处理消息；</p>
 <p>所有的NSObject的子类都实现了- (id)forwardingTargetForSelector:(SEL)aSelector的方法，当类不识别消息时，执行该方法， 返回一个对象，用于处理aSelector;</p>
 <blockquote>
-<p>1.当为true时，将由返回的object处理事件进入objc_msgSend,继续执行，进入Event Handle处理事件；</p>
-<p>2.当返回为false时，说明没有实现这个方法或者返回为nil，使用最后一个挽救的方法，Normal Forwarding（正常转发）；</p>
+<p>当为true时，将由返回的object处理事件进入objc_msgSend,继续执行，进入Event Handle处理事件；<br>当返回为false时，说明没有实现这个方法或者返回为nil，使用最后一个挽救的方法，Normal Forwarding（正常转发）；</p>
 </blockquote>
 <h4 id="3-_-__28NSMethodSignature_*_29methodSignatureForSelector_3A_28SEL_29aSelector"><a href="#3-_-__28NSMethodSignature_*_29methodSignatureForSelector_3A_28SEL_29aSelector" class="headerlink" title="3. - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector"></a>3. - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</h4><p>消息信号，aSelector 为消息内容。</p>
 <p>若是类对于方法有IMP，那么调用父类的该方法就有非nil的返回，若是无IMP，则获取为nil，此时可以把把别的已经实现该方法的类的对象的信号返回，即可实现消息转发；</p>
 <blockquote>
-<p>1.当为true时，说明该类可以处理该方法；<br>2.当为false时，说明无实现，可自行在子类实现该方法，转发消息；<br>3.当为false时，且并不转发消息，那么Runtime会抛出donotRecogniseSelector的异常，程序终止运行。</p>
+<p>当为true时，说明该类可以处理该方法；<br>当为false时，说明无实现，可自行在子类实现该方法，转发消息；<br>当为false时，且并不转发消息，那么Runtime会抛出donotRecogniseSelector的异常，程序终止运行。</p>
 </blockquote>
 <h4 id="4-_-__28void_29forwardInvocation_3A_28NSInvocation_*_29anInvocation"><a href="#4-_-__28void_29forwardInvocation_3A_28NSInvocation_*_29anInvocation" class="headerlink" title="4. - (void)forwardInvocation:(NSInvocation *)anInvocation"></a>4. - (void)forwardInvocation:(NSInvocation *)anInvocation</h4><p>invoke NSInvocation，让target执行对应的selector.</p>
 <p>在子类中可实现该方法，修改anInvocation的target将消息转发出去。</p>
