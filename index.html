@@ -54,6 +54,194 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-23" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/05/misheral-23/">知识点汇总（六）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/08/05/misheral-23/" class="article-date">
+  <time datetime="2016-08-05T01:39:27.000Z" itemprop="datePublished">2016-08-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u56FE_u5F62_u7ED8_u5236"><a href="#u56FE_u5F62_u7ED8_u5236" class="headerlink" title="图形绘制"></a>图形绘制</h3><h4 id="u57FA_u4E8EUIView_u7684DrawRect"><a href="#u57FA_u4E8EUIView_u7684DrawRect" class="headerlink" title="基于UIView的DrawRect"></a>基于UIView的DrawRect</h4><h4 id="u57FA_u4E8ECALayer_u7684DrawRectInContext"><a href="#u57FA_u4E8ECALayer_u7684DrawRectInContext" class="headerlink" title="基于CALayer的DrawRectInContext"></a>基于CALayer的DrawRectInContext</h4>
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-misheral-22" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/05/misheral-22/">知识点汇总（五）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/08/05/misheral-22/" class="article-date">
+  <time datetime="2016-08-05T01:39:19.000Z" itemprop="datePublished">2016-08-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u57FA_u4E8ECALayer__u7684_u52A8_u753B_u5B9E_u73B0"><a href="#u57FA_u4E8ECALayer__u7684_u52A8_u753B_u5B9E_u73B0" class="headerlink" title="基于CALayer 的动画实现"></a>基于CALayer 的动画实现</h3>
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-misheral-21" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/19/misheral-21/">知识点汇总（四）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/19/misheral-21/" class="article-date">
+  <time datetime="2016-07-19T08:48:24.000Z" itemprop="datePublished">2016-07-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="runtime__u4E3A_u7CFB_u7EDF_u7C7B_u65B0_u589Eproperty"><a href="#runtime__u4E3A_u7CFB_u7EDF_u7C7B_u65B0_u589Eproperty" class="headerlink" title="runtime 为系统类新增property"></a>runtime 为系统类新增property</h4><p>动态为系统类新增属性，以普通属性的方式进行访问。</p>
+<p>事例如下，为UIView新增viewHegiht的方法。</p>
+<h4 id="1-__u65B0_u589E_u4E00_u4E2ACategory_2C_u6587_u4EF6_u540D_u4E3AUIView+Frame-h_uFF0CUIView+Frame-m"><a href="#1-__u65B0_u589E_u4E00_u4E2ACategory_2C_u6587_u4EF6_u540D_u4E3AUIView+Frame-h_uFF0CUIView+Frame-m" class="headerlink" title="1. 新增一个Category,文件名为UIView+Frame.h，UIView+Frame.m."></a>1. 新增一个Category,文件名为UIView+Frame.h，UIView+Frame.m.</h4><h4 id="2-__u5728-h_u6587_u4EF6_u6DFB_u52A0_u5C5E_u6027"><a href="#2-__u5728-h_u6587_u4EF6_u6DFB_u52A0_u5C5E_u6027" class="headerlink" title="2. 在.h文件添加属性"></a>2. 在.h文件添加属性</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">property</span><span class="title"> </span>(nonatomic) CGFloat viewHeight;</span><br></pre></td></tr></table></figure>
+<h4 id="3-__u5728-m_u6587_u4EF6_u6DFB_u52A0get_2Cset_u65B9_u6CD5_u4EE5_u53CA_u5B9E_u73B0"><a href="#3-__u5728-m_u6587_u4EF6_u6DFB_u52A0get_2Cset_u65B9_u6CD5_u4EE5_u53CA_u5B9E_u73B0" class="headerlink" title="3. 在.m文件添加get,set方法以及实现"></a>3. 在.m文件添加get,set方法以及实现</h4><p>导入库：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;objc/runtime.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>声明静态常量：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> <span class="keyword">const</span> *playloadObject = <span class="string">@"playloadObject"</span>;</span><br></pre></td></tr></table></figure>
+<p>添加IMP：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CGFloat</span>)viewHeight&#123;</span><br><span class="line">    <span class="keyword">return</span> [objc_getAssociatedObject(<span class="keyword">self</span>, &amp;playloadObject) floatValue];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setViewHeight:(<span class="built_in">CGFloat</span>)viewHeight&#123;</span><br><span class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, &amp;playloadObject, @(viewHeight), OBJC_ASSO<span class="built_in">CIATION_RETAIN_NONATOMIC</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>set方法内调用runtime的方法objc_setAssociatedObject实现值与地址的绑定，注意四个参数，第一个为obj对象，第二个为参数的关联地址，第三个是id类型的对象，最后一个为objc_AssociationPolicy 。</p>
+<p>get方法内调用runtime的方法objc_getAssociatedObject获取数值，注意返回值的内容是id类型，可自行转化为自己想要的类型。</p>
+<h4 id="4-__u7ED3_u675F"><a href="#4-__u7ED3_u675F" class="headerlink" title="4. 结束"></a>4. 结束</h4><p>以上过程完成了对UIView 的扩展，实现返回view的高度。可参照实现方法实现对类的属性的封装。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-misheral-20" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/19/misheral-20/">知识点汇总（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/19/misheral-20/" class="article-date">
+  <time datetime="2016-07-19T08:47:40.000Z" itemprop="datePublished">2016-07-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="runtime__u65B0_u589E_u5B9E_u73B0IMP"><a href="#runtime__u65B0_u589E_u5B9E_u73B0IMP" class="headerlink" title="runtime 新增实现IMP"></a>runtime 新增实现IMP</h3>
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-misheral-19" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -352,7 +540,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" rel="gallery_ciqrmrqu50024p9287grlz72y">
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" rel="gallery_cirrcxlcn002ic228tkdfronj">
         <img src="http://s.cn.bing.net/az/hprichbg/rb/Kestrel_ZH-CN10242518763_1920x1080.jpg" itemprop="image">
       </a>
     
@@ -421,273 +609,8 @@
 
 
     
-      <article id="post-misheral-13" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/07/misheral-13/">iOS开发之CocoaPods的使用说明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/04/07/misheral-13/" class="article-date">
-  <time datetime="2016-04-07T02:10:44.000Z" itemprop="datePublished">2016-04-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h4><p>在开发的过程中，我们经常使用到第三方的库，很多人会采用直接拖入代码的形式，但是这种处理方法不够便捷，伟大的牛牛们做出来可以用来方便的统一管理这些第三方库。</p>
-<p>cocoapods：   <a href="https://cocoapods.org/" target="_blank" rel="external">https://cocoapods.org/</a></p>
-<p>github地址：<a href="https://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods</a></p>
-<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.获取镜像</p>
-<p>终端输入如下命令（把Ruby镜像指向taobao，避免被墙，你懂得）</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove <span class="string">https:</span><span class="comment">//rubygems.org/ </span></span><br><span class="line">gem sources -a <span class="string">https:</span><span class="comment">//ruby.taobao.org/ </span></span><br><span class="line">gem sources -l  （用来检查使用替换镜像位置成功）</span><br></pre></td></tr></table></figure>
-<p>2.下载安装CocoaPods</p>
-<p>终端输入：</p>
-<pre><code>sudo gem install cocoapods
-</code></pre><p>3.使用CocoaPods</p>
-<pre><code>新建一个项目，终端切入到项目的根目录(cd 目录)；
-</code></pre><p>建立Podfile文件，创建配置文件，终端输入 </p>
-<pre><code>touch Podfile
-</code></pre><p>编辑Podfile文件，终端输入 </p>
-<pre><code>vim Podfile
-</code></pre><p>键盘输入 i，进入编辑模式，输入</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span>, </span><br><span class="line">pod <span class="string">'MBProgressHUD'</span>, <span class="string">'~&gt; 0.9.1'</span></span><br></pre></td></tr></table></figure>
-<p>文件内，说明了使用的平台、pod的对象以及pod对象的版本号，可以同时引入多个三方库，新起一行pod即可。</p>
-<p>具体输入的版本号是多少，可以采用如下命令查看：</p>
-<pre><code>pod search MBProgressHUD
-</code></pre><p>比如我现在查看一下我自己的，结果如下：</p>
-<pre><code>MisheraldeMacBook-Pro:~ Misheral$ pod search MBProgressHUD
-
-
--&gt; MBProgressHUD (0.9.1)
-   An iOS activity indicator view.
-   pod &apos;MBProgressHUD&apos;, &apos;~&gt; 0.9.1&apos;
-   - Homepage: http://www.bukovinski.com
-   - Source:   https://github.com/matej/MBProgressHUD.git
-   - Versions: 0.9.1, 0.9, 0.8, 0.7, 0.6, 0.5 [master repo]
-
-
--&gt; MBProgressHUD+BWMExtension (1.0.0)
-   Nihility-Ming to MBProgressHUD extension, easy to use.
-   pod &apos;MBProgressHUD+BWMExtension&apos;, &apos;~&gt; 1.0.0&apos;
-   - Homepage: https://github.com/Nihility-Ming/MBProgressHUD-BWMEXtension
-   - Source:   https://github.com/Nihility-Ming/MBProgressHUD-BWMEXtension.git
-   - Versions: 1.0.0 [master repo]
-
-
--&gt; MBProgressHUDExtensions (0.0.1)
-   UIViewController extensions for displaying an MBProgressHUD
-   pod &apos;MBProgressHUDExtensions&apos;, &apos;~&gt; 0.0.1&apos;
-   - Homepage: https://github.com/SymmetricInfinity/MBProgressHUDExtensions
-   - Source:   https://github.com/SymmetricInfinity/MBProgressHUDExtensions.git
-   - Versions: 0.0.1 [master repo]
-
-
--&gt; MBProgressHUDExtensions@donly (0.3)
-   UIViewController extensions for displaying an MBProgressHUD
-   pod &apos;MBProgressHUDExtensions@donly&apos;, &apos;~&gt; 0.3&apos;
-   - Homepage: https://github.com/donly/MBProgressHUDExtensions
-   - Source:   https://github.com/donly/MBProgressHUDExtensions.git
-   - Versions: 0.3, 0.2, 0.1 [master repo]
-</code></pre><p>项目安装使用</p>
-<pre><code>pod install
-</code></pre><p>安装成功，你会在根目录看到很多文件，并且看到一个后缀为xcworkspace的文件。</p>
-<pre><code>那么，请注意，以后打开项目，不在是prj文件，而是点击xcworkspace文件了。（这个错误我是经常犯的）
-</code></pre><h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>过程还是蛮简单的，只不过我貌似不常用，大部分的三方库在现在的项目中都已经封装好了，直接使用。</p>
-<p>想要查询可以使用哪些第三方的库，可以在<a href="https://cocoapods.org/" target="_blank" rel="external">CocoaPods</a>的官网，search一下。</p>
-<pre><code>注意，我使用的是chrome，有时查看不到pod语句，可以用safari，鼠标移动到小图标上面，实时显示pod语句。
-</code></pre><p>可能在使用的过程中有时候会比较慢，耐心的等待一下，就OK，像我昨天，在公司弄的时候，网络不好，我就趁着安装的过程，看了微博，微信空间啥的，合理利用碎片时间，奥，影响貌似不大好。</p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-12" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/01/misheral-12/">UITesing  使用过程的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/04/01/misheral-12/" class="article-date">
-  <time datetime="2016-04-01T03:39:23.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-11" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_ciqrmrqra0000p928q18cn1kt">
-        <img src="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/26/misheral-11/">iOS开发中分页处理以及界面刷新</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/03/26/misheral-11/" class="article-date">
-  <time datetime="2016-03-26T12:56:37.000Z" itemprop="datePublished">2016-03-26</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-ten" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/18/misheral-ten/">VVDocumenter-Xcode 的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/03/18/misheral-ten/" class="article-date">
-  <time datetime="2016-03-18T09:11:55.000Z" itemprop="datePublished">2016-03-18</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="u8FD9_u662F_u4EC0_u4E48_u5462_3F"><a href="#u8FD9_u662F_u4EC0_u4E48_u5462_3F" class="headerlink" title="这是什么呢?"></a>这是什么呢?</h3><p>通常我们在写注释的时候，要打很多烦躁的代码，这个工具便于我们快速的在一个类或者方法前面生成一个注释代码。</p>
-<h3 id="u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5"><a href="#u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5" class="headerlink" title="如何使用和安装"></a>如何使用和安装</h3><p>github地址如下：</p>
-<p><a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external">https://github.com/onevcat/VVDocumenter-Xcode</a></p>
-<ul>
-<li><p>下载应用，在mac上运行;</p>
-</li>
-<li><p>本机进入/Users/Name/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/,能看到多出一个插件VVDocumenter-Xcode.xcplugin；</p>
-</li>
-<li><p>重启Xcode；</p>
-</li>
-</ul>
-<p>在类或者方法的前面，打 <strong>///</strong>即可快速添加注释。</p>
-<pre><code>若想修改快捷方式，可在Xcode－Window下点击VVDocumenter，弹出的面板上可以选择性设置。
-</code></pre><p>好吧，这就是它伟大的配置方法，该插件出自我们伟大的喵神。</p>
-<p>然而，它也有不尽人意之处，每次升级Xcode以后，都不能再使用该快捷键，需重新再运行一次。</p>
-<h3 id="u55B5_u795E_u7684_u539F_u521B"><a href="#u55B5_u795E_u7684_u539F_u521B" class="headerlink" title="喵神的原创"></a>喵神的原创</h3><p>有好多很厉害的开发呢，没事儿的时候可以多和高手学习一下。</p>
-<p>onevcat blog address ： <a href="http://onev.cat" target="_blank" rel="external">http://onev.cat</a></p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/remark/">remark</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
       <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
       </nav>
     </section>
     <footer id="footer">

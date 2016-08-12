@@ -54,6 +54,271 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-misheral-13" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/07/misheral-13/">iOS开发之CocoaPods的使用说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/07/misheral-13/" class="article-date">
+  <time datetime="2016-04-07T02:10:44.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h4><p>在开发的过程中，我们经常使用到第三方的库，很多人会采用直接拖入代码的形式，但是这种处理方法不够便捷，伟大的牛牛们做出来可以用来方便的统一管理这些第三方库。</p>
+<p>cocoapods：   <a href="https://cocoapods.org/" target="_blank" rel="external">https://cocoapods.org/</a></p>
+<p>github地址：<a href="https://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods</a></p>
+<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.获取镜像</p>
+<p>终端输入如下命令（把Ruby镜像指向taobao，避免被墙，你懂得）</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove <span class="string">https:</span><span class="comment">//rubygems.org/ </span></span><br><span class="line">gem sources -a <span class="string">https:</span><span class="comment">//ruby.taobao.org/ </span></span><br><span class="line">gem sources -l  （用来检查使用替换镜像位置成功）</span><br></pre></td></tr></table></figure>
+<p>2.下载安装CocoaPods</p>
+<p>终端输入：</p>
+<pre><code>sudo gem install cocoapods
+</code></pre><p>3.使用CocoaPods</p>
+<pre><code>新建一个项目，终端切入到项目的根目录(cd 目录)；
+</code></pre><p>建立Podfile文件，创建配置文件，终端输入 </p>
+<pre><code>touch Podfile
+</code></pre><p>编辑Podfile文件，终端输入 </p>
+<pre><code>vim Podfile
+</code></pre><p>键盘输入 i，进入编辑模式，输入</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span>, </span><br><span class="line">pod <span class="string">'MBProgressHUD'</span>, <span class="string">'~&gt; 0.9.1'</span></span><br></pre></td></tr></table></figure>
+<p>文件内，说明了使用的平台、pod的对象以及pod对象的版本号，可以同时引入多个三方库，新起一行pod即可。</p>
+<p>具体输入的版本号是多少，可以采用如下命令查看：</p>
+<pre><code>pod search MBProgressHUD
+</code></pre><p>比如我现在查看一下我自己的，结果如下：</p>
+<pre><code>MisheraldeMacBook-Pro:~ Misheral$ pod search MBProgressHUD
+
+
+-&gt; MBProgressHUD (0.9.1)
+   An iOS activity indicator view.
+   pod &apos;MBProgressHUD&apos;, &apos;~&gt; 0.9.1&apos;
+   - Homepage: http://www.bukovinski.com
+   - Source:   https://github.com/matej/MBProgressHUD.git
+   - Versions: 0.9.1, 0.9, 0.8, 0.7, 0.6, 0.5 [master repo]
+
+
+-&gt; MBProgressHUD+BWMExtension (1.0.0)
+   Nihility-Ming to MBProgressHUD extension, easy to use.
+   pod &apos;MBProgressHUD+BWMExtension&apos;, &apos;~&gt; 1.0.0&apos;
+   - Homepage: https://github.com/Nihility-Ming/MBProgressHUD-BWMEXtension
+   - Source:   https://github.com/Nihility-Ming/MBProgressHUD-BWMEXtension.git
+   - Versions: 1.0.0 [master repo]
+
+
+-&gt; MBProgressHUDExtensions (0.0.1)
+   UIViewController extensions for displaying an MBProgressHUD
+   pod &apos;MBProgressHUDExtensions&apos;, &apos;~&gt; 0.0.1&apos;
+   - Homepage: https://github.com/SymmetricInfinity/MBProgressHUDExtensions
+   - Source:   https://github.com/SymmetricInfinity/MBProgressHUDExtensions.git
+   - Versions: 0.0.1 [master repo]
+
+
+-&gt; MBProgressHUDExtensions@donly (0.3)
+   UIViewController extensions for displaying an MBProgressHUD
+   pod &apos;MBProgressHUDExtensions@donly&apos;, &apos;~&gt; 0.3&apos;
+   - Homepage: https://github.com/donly/MBProgressHUDExtensions
+   - Source:   https://github.com/donly/MBProgressHUDExtensions.git
+   - Versions: 0.3, 0.2, 0.1 [master repo]
+</code></pre><p>项目安装使用</p>
+<pre><code>pod install
+</code></pre><p>安装成功，你会在根目录看到很多文件，并且看到一个后缀为xcworkspace的文件。</p>
+<pre><code>那么，请注意，以后打开项目，不在是prj文件，而是点击xcworkspace文件了。（这个错误我是经常犯的）
+</code></pre><h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>过程还是蛮简单的，只不过我貌似不常用，大部分的三方库在现在的项目中都已经封装好了，直接使用。</p>
+<p>想要查询可以使用哪些第三方的库，可以在<a href="https://cocoapods.org/" target="_blank" rel="external">CocoaPods</a>的官网，search一下。</p>
+<pre><code>注意，我使用的是chrome，有时查看不到pod语句，可以用safari，鼠标移动到小图标上面，实时显示pod语句。
+</code></pre><p>可能在使用的过程中有时候会比较慢，耐心的等待一下，就OK，像我昨天，在公司弄的时候，网络不好，我就趁着安装的过程，看了微博，微信空间啥的，合理利用碎片时间，奥，影响貌似不大好。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-misheral-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/01/misheral-12/">UITesing  使用过程的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/01/misheral-12/" class="article-date">
+  <time datetime="2016-04-01T03:39:23.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-misheral-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" rel="gallery_cirrcxl9b0000c22853080zwk">
+        <img src="http://s.cn.bing.net/az/hprichbg/rb/WhitePocket_ZH-CN12539562230_1920x1080.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/26/misheral-11/">iOS开发中分页处理以及界面刷新</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/03/26/misheral-11/" class="article-date">
+  <time datetime="2016-03-26T12:56:37.000Z" itemprop="datePublished">2016-03-26</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-misheral-ten" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/18/misheral-ten/">VVDocumenter-Xcode 的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/03/18/misheral-ten/" class="article-date">
+  <time datetime="2016-03-18T09:11:55.000Z" itemprop="datePublished">2016-03-18</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u8FD9_u662F_u4EC0_u4E48_u5462_3F"><a href="#u8FD9_u662F_u4EC0_u4E48_u5462_3F" class="headerlink" title="这是什么呢?"></a>这是什么呢?</h3><p>通常我们在写注释的时候，要打很多烦躁的代码，这个工具便于我们快速的在一个类或者方法前面生成一个注释代码。</p>
+<h3 id="u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5"><a href="#u5982_u4F55_u4F7F_u7528_u548C_u5B89_u88C5" class="headerlink" title="如何使用和安装"></a>如何使用和安装</h3><p>github地址如下：</p>
+<p><a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external">https://github.com/onevcat/VVDocumenter-Xcode</a></p>
+<ul>
+<li><p>下载应用，在mac上运行;</p>
+</li>
+<li><p>本机进入/Users/Name/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/,能看到多出一个插件VVDocumenter-Xcode.xcplugin；</p>
+</li>
+<li><p>重启Xcode；</p>
+</li>
+</ul>
+<p>在类或者方法的前面，打 <strong>///</strong>即可快速添加注释。</p>
+<pre><code>若想修改快捷方式，可在Xcode－Window下点击VVDocumenter，弹出的面板上可以选择性设置。
+</code></pre><p>好吧，这就是它伟大的配置方法，该插件出自我们伟大的喵神。</p>
+<p>然而，它也有不尽人意之处，每次升级Xcode以后，都不能再使用该快捷键，需重新再运行一次。</p>
+<h3 id="u55B5_u795E_u7684_u539F_u521B"><a href="#u55B5_u795E_u7684_u539F_u521B" class="headerlink" title="喵神的原创"></a>喵神的原创</h3><p>有好多很厉害的开发呢，没事儿的时候可以多和高手学习一下。</p>
+<p>onevcat blog address ： <a href="http://onev.cat" target="_blank" rel="external">http://onev.cat</a></p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/remark/">remark</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-misheral-nine" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -462,227 +727,8 @@
 
 
     
-      <article id="post-misheral-three" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/19/misheral-three/">iOS Quartz 画多边形</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/01/19/misheral-three/" class="article-date">
-  <time datetime="2016-01-19T02:24:11.000Z" itemprop="datePublished">2016-01-19</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为一个图标分析的界面，想要画出一个多边形，搜索了一下，发现都不大靠谱，还是自己写一个吧，写完发现，其实不难啊，人懒不成事儿，这话说的真不假！！！</p>
-<p>主要的逻辑：</p>
-<ol>
-<li>计算半径，我们按照中心点作为标准，最短边的一半做为半径；</li>
-<li>根据圆周率以及角度运算计算坐标点；</li>
-<li>连线；</li>
-<li>绘制图形；</li>
-</ol>
-<p>以下的代码以右侧端点，按照逆时针按照0度开始计算，依次算出count边形的各个端点；</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect &#123;</span><br><span class="line">    <span class="comment">// Drawing code</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextSetStrokeColorWithColor</span>(context, [<span class="built_in">UIColor</span> whiteColor]<span class="variable">.CGColor</span>);</span><br><span class="line">    <span class="built_in">CGContextSetRGBFillColor</span>(context, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 虚线，每两个像素画一个虚线，虚线长度2像素</span></span><br><span class="line">    <span class="built_in">CGFloat</span> lengths[] = &#123;<span class="number">2</span>,<span class="number">2</span>&#125;;</span><br><span class="line">    <span class="built_in">CGContextSetLineDash</span>(context, <span class="number">0</span>, lengths, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">CGContextSetLineWidth</span>(context, <span class="number">2.0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.count</span> &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableArray</span> *points = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="keyword">self</span><span class="variable">.count</span>];</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">CGPoint</span> circlePoints[<span class="keyword">self</span><span class="variable">.count</span>+<span class="number">1</span>];<span class="comment">//多边形的边</span></span><br><span class="line">    <span class="built_in">CGFloat</span> width = <span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span><span class="variable">.bounds</span>);</span><br><span class="line">    <span class="built_in">CGFloat</span> height = <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span><span class="variable">.bounds</span>);</span><br><span class="line">    <span class="built_in">CGFloat</span> radius = ABS((width &lt; height ? width : height)/<span class="number">2.0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= <span class="keyword">self</span><span class="variable">.count</span>; i ++)&#123;</span><br><span class="line">        <span class="built_in">CGPoint</span> tempPoint = <span class="built_in">CGPointZero</span>;</span><br><span class="line">        tempPoint<span class="variable">.x</span> =  width/<span class="number">2.0</span> + radius * cos(<span class="number">2</span>*i*M_PI/<span class="keyword">self</span><span class="variable">.count</span>);</span><br><span class="line">        tempPoint<span class="variable">.y</span> =  height/<span class="number">2.0</span> - radius * sin(<span class="number">2</span>*i*M_PI/<span class="keyword">self</span><span class="variable">.count</span>);</span><br><span class="line">        [points addObject:<span class="built_in">NSStringFromCGPoint</span>(tempPoint)];</span><br><span class="line">        </span><br><span class="line">        circlePoints[i-<span class="number">1</span>]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">        circlePoints[i-<span class="number">1</span>]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">1</span>) &#123;</span><br><span class="line">            circlePoints[<span class="keyword">self</span><span class="variable">.count</span>]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">            circlePoints[<span class="keyword">self</span><span class="variable">.count</span>]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">CGPoint</span> centerPoint = <span class="built_in">CGPointMake</span>(width/<span class="number">2</span>, height/<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//画半径</span></span><br><span class="line">        <span class="built_in">CGContextMoveToPoint</span>(context, centerPoint<span class="variable">.x</span>, centerPoint<span class="variable">.y</span>);</span><br><span class="line">        <span class="built_in">CGContextAddLineToPoint</span>(context, tempPoint<span class="variable">.x</span>, tempPoint<span class="variable">.y</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">CGContextAddLines</span>(context, circlePoints, <span class="keyword">self</span><span class="variable">.count</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">CGContextStrokePath</span>(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需求上，还要求，再这个图形的基础上，绘制出一个不同剃度的不规则的图形，后续将会补充说明处理过程；</p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/绘图/">绘图</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="minos-misheral-two" class="article article-type-minos" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/OldLibrary_ZH-CN12553861473_1920x1080.jpg" rel="gallery_ciqrmrqsr0008p928flb43duf">
-        <img src="http://s.cn.bing.net/az/hprichbg/rb/OldLibrary_ZH-CN12553861473_1920x1080.jpg" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/12/misheral-two/">2015年度总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/01/12/misheral-two/" class="article-date">
-  <time datetime="2016-01-12T05:43:03.000Z" itemprop="datePublished">2016-01-12</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工作总结/">工作总结</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="u56DE_u987E"><a href="#u56DE_u987E" class="headerlink" title="回顾"></a>回顾</h2><p>整个2015年结束了，本命年，还是一个三年之别的日子，但是在过去的一年中，成长不少，收获不少。</p>
-<h3 id="u5E72_u81EA_u5DF1_u8BE5_u5E72_u7684"><a href="#u5E72_u81EA_u5DF1_u8BE5_u5E72_u7684" class="headerlink" title="干自己该干的"></a>干自己该干的</h3><p>15的一大部分都花费在2.0订货会陈列订货部分，包括以下几个方面：</p>
-<ol>
-<li>开发新的下拉菜单功能；</li>
-<li>修复已经开发好的陈列功能；</li>
-<li>改进手势；</li>
-<li>改进代码，提高代码的效率以及整体复杂度；</li>
-<li>设计新的主界面的布局，以后台配置表生成主界面结构，实现未读消息；</li>
-<li>智能换款以及快速替换款功能的开发；</li>
-</ol>
-<p>整个功能板块，到目前为止，可以正式投入运行。</p>
-<p>后半部分时间用来做以下几件事情：</p>
-<ol>
-<li>熟悉订货会的整体结构；</li>
-<li>修复出现的bug，改进由于前期考虑不周造成的问题，修复有隐患的code；</li>
-<li>编写订货会的界面配置文档；</li>
-<li>了解定制功能；</li>
-</ol>
-<p>做一款让自己骄傲的东西很不容易啊！！！</p>
-<p>另外，貌似独立做了两个小的企业级的项目，一个车子的，一个投资的，一个完工，一个最后不了了之，虽然那段时间很累，但是过的很充实。</p>
-<p>ai ma,这一年也就做了这么多了。</p>
-<p> 大致算了一下，貌似，有一个月的时间是在老家度过的～～～我也是个还算孝顺的妹子，说好的陪着老娘看她母亲，陪着年迈的姥姥，住了整整一个星期～～～还有小半个月，是在家守着母亲，度过了老爸三周年的忌日和生日———那时候基于母亲各种各样的的说辞，薪水待遇，以及分手之后的各种乱七八糟的想法，动起了离职的想法，想要换个公司或者换个城市，总之，就想到一个新环境，然而又是一些自己已经习惯的原因，留在了老公司。</p>
-<p> 哎，习惯也真是一个可怕的借口，比如习惯一个城市，习惯一些人，习惯一种生活，大约我也是用这个借口去搪塞朱先生的。</p>
-<p> 好吧～ 言归正传。</p>
-<p>在贯信，大部分时间都是用来做陈列的重构。14年年尾的时候，写了一个版本的陈列，刚开始的时候，似乎没有考虑到整个业务的复杂度，本着实现功能为第一准则，在后期功能的不断追加下，使得整个结构不够稳定,又迫于各种复杂度和设计不周造成的问题，在15年年初开始策划翻写。</p>
-<p>最终，在15年的上半年即将到来的时候发布了一个基本功能能用的版本。</p>
-<h3 id="u5B66_u81EA_u5DF1_u60F3_u5B66_u7684"><a href="#u5B66_u81EA_u5DF1_u60F3_u5B66_u7684" class="headerlink" title="学自己想学的"></a>学自己想学的</h3><p>嗯，这个嘛，其实好像不知道从哪儿说。</p>
-<p>  我爱好广泛，涉猎的非专业东西比较多，但是又是一知半解，所以这么写的时候，不知道咋说嘞。说实话，我觉得学习swift是很有必要的，不知道为啥，反正从始至终我都没有放弃过。</p>
-<p>  每天，会找一定的时间去看一会儿swift，隔一段时间，会看看API，这些都是我坚持下来的，我始终相信最好的老师还是文档，最好的文档还是API，因为底层API是英文的，（而且我的口语很差，老是被人说笑，弄得我更不敢说英语了。）所以隔段时间会找时间看英文的报纸或者只是文章，或者就听。</p>
-<p>  但是还有别的东西没有做呢！我本来还想在15年好好的做电子杂志之类的东西的，以后若是做这一块的app会顺手，可是到现在都没有好好的去做一下。哎，周末啊，都用来睡觉和去外地了，都是麻溜的不行不行的。</p>
-<p>  另外一个值得高兴的就是我终于开始用gitPages做自己的博客，虽然是不久前才开始用的，嘎嘎嘎，之前的博客一直是在百度以及csdn上做的，在浏览信息的时候看到别人的样式很漂亮，我也很稀饭，（虽然我刚搭出来的时候，别人泼了冷水，但是我还是很开心），我也就做了，很感谢noble liu的帮忙，所以能在这里看到这个了。</p>
-<h2 id="u5C55_u671B"><a href="#u5C55_u671B" class="headerlink" title="展望"></a>展望</h2><h3 id="u6211_u6709_u4E00_u4E9B_u4E0D_u5927_u4E0D_u5C0F_u7684_u76EE_u6807"><a href="#u6211_u6709_u4E00_u4E9B_u4E0D_u5927_u4E0D_u5C0F_u7684_u76EE_u6807" class="headerlink" title="我有一些不大不小的目标"></a><strong>我有一些不大不小的目标</strong></h3><p>日子还是要过的，我还是有努力的空间滴，在过去的一年中，我也看到了自己和别人的差距，可以捡拾的东西还是不少的，争取在来年多努力。</p>
-<ol>
-<li>现在对于swift还是处于学些的阶段，争取在接下来的16年用swift做一个真正的小项目，做一个自己觉得有意思的，又能够学到东西的小app。</li>
-<li>数据库还是很有学习的必要的，该怎么说呢，我们几乎所有的app都要与数据库交互，在服务器没有给到数据的时候，我们可以设计数据结构以及数据内容，与本地的数据库交互成为了必要的技术。</li>
-<li>php，貌似一直以来都对php的项目感兴趣的，还是想要好好学学。</li>
-<li>多和行业内的人交流，虽然领域不一样，虽然做的东西不同，但是原理还是一样的，能学习别人的一种态度或者一些想法还是很有好处的。</li>
-<li><p>多旅游，多读书，所看看世界。</p>
-<p>在iOS开发方面，我这人就只认有页面做东西，对设计什么的都不感兴趣（但是个人觉得还是有一套自己的审美概念的），公司内部的项目也是见证了成长，但是说实话，界面上我真不喜欢，但是只给需求让我去设计，我更做不来。当初做陈列的时候，不停的拿界面问领导，这个效果怎么样，那个按钮怎么样，还找设计，你给我做个那啥啥按钮，哎，想想，我也是醉了。说实话，单独的去想功能，而本身又从未接触一个行业，这玩意儿我真搞不定，也分析不了实用性。所以，接下来的日子还是要多加加油，了解设计，了解行业本身的特性。</p>
-</li>
-</ol>
-<h3 id="u4ED8_u51FA_u8BE5_u4ED8_u51FA_u7684"><a href="#u4ED8_u51FA_u8BE5_u4ED8_u51FA_u7684" class="headerlink" title="付出该付出的"></a>付出该付出的</h3><p> misheral，多多用功，多多努力，想要做好一个行业的东西，就要熟悉业界的一套路子，然后走自己路，让别人笑话去吧～～～！！！</p>
-<h3 id="u516C_u53F8_u5B9E_u73B0_u7684_u76EE_u6807"><a href="#u516C_u53F8_u5B9E_u73B0_u7684_u76EE_u6807" class="headerlink" title="公司实现的目标"></a>公司实现的目标</h3><p>能和一些潮流大牌多交流，了解他们app的方向，找一个点儿，更好的去改进订货会，进而有更大市场，给公司挣价值吧～</p>
-<h3 id="u751F_u6D3B_u4E2D_u7684_u76EE_u6807_u5462"><a href="#u751F_u6D3B_u4E2D_u7684_u76EE_u6807_u5462" class="headerlink" title="生活中的目标呢"></a>生活中的目标呢</h3><p>比如，我想带着小宝儿去西安，走张掖，看丹霞地貌，赏嘉峪关的美景，吃成都的小吃，看厦门的美景等等。</p>
-<p>唉嘛，希望自己都能一一实现，等到17年再来看这些想要实现的东西时,若一一实现了，我也算是对得起自己了。</p>
-<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>zongzhi, 还是少扯一点儿，多做一点儿，少说话，多做事，总没有错的。干活的干活，逛吃的逛吃，做好自己的每一件事儿。</p>
-<p>今年若是按照10分来评价的话，给自己打八分，对得起良心，对得起公司，对的父亲，对得起高女士，对得起朱先生，对得起自己。<br>没有大过，也几乎没啥大的功劳。</p>
-<p>老爸老头说，善始善终，每一个经历的事情都要做得好好的，不落人口实。<br>我也在尽力的做，每一件事，尽心对每一分工作，用心对每一个身边的人。</p>
-<p>最后，还是想对自己说，加油～～自己，加油～～misheral ！！！</p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工作/">工作</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-misheral-one" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="http://s.cn.bing.net/az/hprichbg/rb/VernalEquinoxOrchid_ZH-CN10226406786_1920x1080.jpg" rel="gallery_ciqrmrqtc000yp9283mpjgq7f">
-        <img src="http://s.cn.bing.net/az/hprichbg/rb/VernalEquinoxOrchid_ZH-CN10226406786_1920x1080.jpg" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/20/misheral-one/">Misheral first blog</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2015/11/20/misheral-one/" class="article-date">
-  <time datetime="2015-11-20T02:13:25.000Z" itemprop="datePublished">2015-11-20</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/杂记/">杂记</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> hello,我是miss yao! 90后妹纸，我很确定，不是美女。</p>
-<p> iOS开发工程师，目前坐标：申城上海。</p>
-<p>  2013年开始从事iOS移动开发工作，目前有两年多的工作经验。</p>
-<p>  看到别人的博客很漂亮，想要一个属于自己的，所以，就倒腾了一下。</p>
-<p>第一次来到这里, 给自己留一个纪念。虽然不是第一次写博客，但是很是很激动。以后会在闲暇时段，在这里分享移动开发方面遇到的一些问题或者技术点，并且备注一些经常会忘记的东西，共勉技术发展。偶尔的，有好的作品的话，会在这里分享出来。目前创作领域，在移动订货方向，企业级应用。</p>
-<p> 以后若有关于iOS方面的技术性东西，欢迎交流。</p>
-<p>QQ ： 925912264</p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mind/">mind</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
       </nav>
     </section>
     <footer id="footer">

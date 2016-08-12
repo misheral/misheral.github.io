@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>知识点汇总（四） - Misheral&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="runtime 为系统类新增property动态为系统类新增属性，以普通属性的方式进行访问。
+事例如下，为UIView新增viewHegiht的方法。
+1. 新增一个Category,文件名为UIView+Frame.h，UIView+Frame.m.2. 在.h文件添加属性1@property (nonatomic) CGFloat viewHeight;
+3. 在.m文件添加get,set方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识点汇总（四）">
+<meta property="og:url" content="http://yoursite.com/2016/07/19/misheral-21/index.html">
+<meta property="og:site_name" content="Misheral's blog">
+<meta property="og:description" content="runtime 为系统类新增property动态为系统类新增属性，以普通属性的方式进行访问。
+事例如下，为UIView新增viewHegiht的方法。
+1. 新增一个Category,文件名为UIView+Frame.h，UIView+Frame.m.2. 在.h文件添加属性1@property (nonatomic) CGFloat viewHeight;
+3. 在.m文件添加get,set方法">
+<meta property="og:updated_time" content="2016-08-12T06:11:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="知识点汇总（四）">
+<meta name="twitter:description" content="runtime 为系统类新增property动态为系统类新增属性，以普通属性的方式进行访问。
+事例如下，为UIView新增viewHegiht的方法。
+1. 新增一个Category,文件名为UIView+Frame.h，UIView+Frame.m.2. 在.h文件添加属性1@property (nonatomic) CGFloat viewHeight;
+3. 在.m文件添加get,set方法">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">概览</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-misheral-21" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      知识点汇总（四）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/19/misheral-21/" class="article-date">
+  <time datetime="2016-07-19T08:48:24.000Z" itemprop="datePublished">2016-07-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="runtime__u4E3A_u7CFB_u7EDF_u7C7B_u65B0_u589Eproperty"><a href="#runtime__u4E3A_u7CFB_u7EDF_u7C7B_u65B0_u589Eproperty" class="headerlink" title="runtime 为系统类新增property"></a>runtime 为系统类新增property</h4><p>动态为系统类新增属性，以普通属性的方式进行访问。</p>
+<p>事例如下，为UIView新增viewHegiht的方法。</p>
+<h4 id="1-__u65B0_u589E_u4E00_u4E2ACategory_2C_u6587_u4EF6_u540D_u4E3AUIView+Frame-h_uFF0CUIView+Frame-m"><a href="#1-__u65B0_u589E_u4E00_u4E2ACategory_2C_u6587_u4EF6_u540D_u4E3AUIView+Frame-h_uFF0CUIView+Frame-m" class="headerlink" title="1. 新增一个Category,文件名为UIView+Frame.h，UIView+Frame.m."></a>1. 新增一个Category,文件名为UIView+Frame.h，UIView+Frame.m.</h4><h4 id="2-__u5728-h_u6587_u4EF6_u6DFB_u52A0_u5C5E_u6027"><a href="#2-__u5728-h_u6587_u4EF6_u6DFB_u52A0_u5C5E_u6027" class="headerlink" title="2. 在.h文件添加属性"></a>2. 在.h文件添加属性</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">property</span><span class="title"> </span>(nonatomic) CGFloat viewHeight;</span><br></pre></td></tr></table></figure>
+<h4 id="3-__u5728-m_u6587_u4EF6_u6DFB_u52A0get_2Cset_u65B9_u6CD5_u4EE5_u53CA_u5B9E_u73B0"><a href="#3-__u5728-m_u6587_u4EF6_u6DFB_u52A0get_2Cset_u65B9_u6CD5_u4EE5_u53CA_u5B9E_u73B0" class="headerlink" title="3. 在.m文件添加get,set方法以及实现"></a>3. 在.m文件添加get,set方法以及实现</h4><p>导入库：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;objc/runtime.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>声明静态常量：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> <span class="keyword">const</span> *playloadObject = <span class="string">@"playloadObject"</span>;</span><br></pre></td></tr></table></figure>
+<p>添加IMP：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CGFloat</span>)viewHeight&#123;</span><br><span class="line">    <span class="keyword">return</span> [objc_getAssociatedObject(<span class="keyword">self</span>, &amp;playloadObject) floatValue];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setViewHeight:(<span class="built_in">CGFloat</span>)viewHeight&#123;</span><br><span class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, &amp;playloadObject, @(viewHeight), OBJC_ASSO<span class="built_in">CIATION_RETAIN_NONATOMIC</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>set方法内调用runtime的方法objc_setAssociatedObject实现值与地址的绑定，注意四个参数，第一个为obj对象，第二个为参数的关联地址，第三个是id类型的对象，最后一个为objc_AssociationPolicy 。</p>
+<p>get方法内调用runtime的方法objc_getAssociatedObject获取数值，注意返回值的内容是id类型，可自行转化为自己想要的类型。</p>
+<h4 id="4-__u7ED3_u675F"><a href="#4-__u7ED3_u675F" class="headerlink" title="4. 结束"></a>4. 结束</h4><p>以上过程完成了对UIView 的扩展，实现返回view的高度。可参照实现方法实现对类的属性的封装。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/05/misheral-22/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          知识点汇总（五）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/19/misheral-20/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">知识点汇总（三）&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Misheral Yao&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
