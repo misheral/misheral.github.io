@@ -23,7 +23,7 @@ CABasicAnimation 的基本动画只有以下几组：
 问题：
 CABasicAnimation 的基本动画只有以下几组：
 123456789101112131415161718192021222324252627282930313233343536373839animationWithKeyPath的值： tra">
-<meta property="og:updated_time" content="2016-08-12T06:31:06.000Z">
+<meta property="og:updated_time" content="2016-08-12T06:34:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知识点汇总（五）">
 <meta name="twitter:description" content="基于CALayer 的动画实现需求：
@@ -116,7 +116,7 @@ CABasicAnimation 的基本动画只有以下几组：
 <h4 id="u52A8_u753B_u8C03_u7528"><a href="#u52A8_u753B_u8C03_u7528" class="headerlink" title="动画调用"></a>动画调用</h4> <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">Coslayer *layer = [Coslayer layer];</span><br><span class="line">layer.frame = CGRectMake(<span class="number">100</span>, <span class="number">100</span>, <span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">[<span class="literal">self</span>.view.layer addSublayer:layer];</span><br><span class="line"></span><br><span class="line">CABasicAnimation *<span class="keyword">basic</span> = [CABasicAnimation animationWithKeyPath:@<span class="string">"offsetAngle"</span>];</span><br><span class="line"><span class="keyword">basic</span>.<span class="keyword">from</span>Value = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">basic</span>.<span class="keyword">to</span>Value = [NSNumber numberWithFloat:M_PI*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">basic</span>.byValue = [NSNumber numberWithFloat:M_PI];</span><br><span class="line"><span class="keyword">basic</span>.duration = <span class="number">0.6</span>;</span><br><span class="line"><span class="keyword">basic</span>.autoreverses = NO;</span><br><span class="line"><span class="keyword">basic</span>.speed = <span class="number">0.4</span>;</span><br><span class="line"><span class="keyword">basic</span>.repeatCount = HUGE_VALF;</span><br><span class="line">[layer addAnimation:<span class="keyword">basic</span> <span class="keyword">for</span>Key:@<span class="string">"offsetAngle"</span>];</span><br></pre></td></tr></table></figure>
 <p>CABasicAnimation 初始化实例对象时要求传入keyPath，这个就是对应的路径。</p>
 <p>上述例子就是指offsetAngle从0到2π的过渡，过渡值为π，过渡时间为0.6，不自动转回。</p>
-<p>repeatCount在api中已经数名，无限次的重复动画，设置为HUGE_VALF。</p>
+<p>repeatCount在api中已经说明，是动画的次数，若想设置为无限次的重复动画值为HUGE_VALF。</p>
 
       
     </div>
