@@ -4,7 +4,7 @@
   <subtitle><![CDATA[coder for iOS]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-05T02:23:34.000Z</updated>
+  <updated>2016-08-25T06:31:30.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[misheral-25]]></title>
+    <link href="http://yoursite.com/2016/08/25/misheral-25/"/>
+    <id>http://yoursite.com/2016/08/25/misheral-25/</id>
+    <published>2016-08-25T06:31:30.000Z</published>
+    <updated>2016-08-25T06:31:30.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Xcode7 创建自定义模板]]></title>
+    <link href="http://yoursite.com/2016/08/20/misheral-24/"/>
+    <id>http://yoursite.com/2016/08/20/misheral-24/</id>
+    <published>2016-08-20T06:31:50.000Z</published>
+    <updated>2016-08-25T07:10:42.000Z</updated>
+    <content type="html"><![CDATA[<p>在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。</p>
+<p><strong>当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。</strong></p>
+<p>具体使用，可查看如下连接：<br><a href="http://www.jianshu.com/p/93527682d8d3" target="_blank" rel="external">http://www.jianshu.com/p/93527682d8d3</a></p>
+<p>虽然有些许的错误，但是整体流程是OK的。</p>
+<h5 id="u5904_u7406_u8FC7_u7A0B"><a href="#u5904_u7406_u8FC7_u7A0B" class="headerlink" title="处理过程"></a>处理过程</h5><p>接下来，看处理过程：</p>
+<ol>
+<li><p>获取模版路径</p>
+<p> 系统模版的路径为~/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates<br> File Templates下包含Apple Watch,Resource,Source,User Interface,四个目录，对应了新增文件时，iOS下的几个分级目录。比如，我们想查看CocoaTouch下对应的内容，我们可以看Cocoa Touch Class.xctemplate这个模版。<br> <strong>通常,我们会在Source下新增新的模版。</strong></p>
+<p>将 MSTemplate.xctemplate文件夹放到Source系统模板文件夹中，就会在New File时出现在对应的选项中。 在往里面copy文件时，系统会提示你输入管理员密码，输入密码进行处理。</p>
+</li>
+<li><p>template内容介绍   </p>
+<p> MSTemplate.xctemplate 处理的是对UIViewController的模块修改。MSTemplate.xctemplate文件夹包含了</p>
+<p> 假设已经将MSTemplate.xctemplate放入了Source文件夹中，查看MSTemplate.xctemplate中有TemplateIcon.png,TemplateIcon@2x.png,TemplateInfo.plis以及UIViewControllerXIBObjective-C文件夹，UIViewControllerXIBObjective-C文件夹内包含三个文件<strong><em>FILEBASENAME</em></strong>.h,<strong><em>FILEBASENAME</em></strong>.m, <strong><em>FILEBASENAME</em></strong>.xib。</p>
+<p> （1）UIViewControllerObjective-C 文件夹<br>用来创建.h 和 .m文件。 其中文件夹的命名规范是[name]+Objective-C. 如果是创建swift修改为swift。<br>（2）UIViewControllerXibObjective-C文件夹<br>用来创建.h，.m和.xib文件。其中文件夹的命名规范是[name]+XibObjective-C. swift类似。<br>（3）TemplateIcon图片<br>图片是用来显示在New File的菜单上的。任意放一个自己喜欢的图片，像素138*138即可。<br>（4）TemplateInfo.plist配置文件。下面单独讲讲。</p>
+</li>
+</ol>
+<ol>
+<li><p>头文件和实现的说明。</p>
+<pre><code>___FILEBASENAME___.h代码如下
+</code></pre></li>
+</ol>
+<pre><code><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">          <span class="comment">//</span></span><br><span class="line"><span class="comment">//  ___FILENAME___</span></span><br><span class="line"><span class="comment">//  ___PROJECTNAME___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by ___FULLUSERNAME___ on ___DATE___.</span></span><br><span class="line"><span class="comment">//___COPYRIGHT___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line">___I<span class="built_in">MPORTHEADER_cocoaTouchSubclass___</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">___FILEBASENAMEASIDENTIFIER___</span> : <span class="title">___VARIABLE_cocoaTouchSubclass___</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+
+ ___FILEBASENAME___.m 代码如下
+
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">//</span></span><br><span class="line"><span class="comment">//  ___FILENAME___</span></span><br><span class="line"><span class="comment">//  ___PROJECTNAME___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by ___FULLUSERNAME___ on ___DATE___.</span></span><br><span class="line"><span class="comment">//___COPYRIGHT___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#import <span class="title">"___FILEBASENAME___.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">___FILEBASENAMEASIDENTIFIER___</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">___FILEBASENAMEASIDENTIFIER___</span></span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#pragma mark  lifecycle</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="comment">// Do any additional setup after loading the view.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning &#123;</span><br><span class="line">    [<span class="keyword">super</span> didReceiveMemoryWarning];</span><br><span class="line">    <span class="comment">// Dispose of any resources that can be recreated.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewWillAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#pragma mark btn event</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//back button clicked</span></span><br><span class="line">- (<span class="keyword">void</span>)doBack:(<span class="built_in">UIButton</span> *)sender&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+xib 文件可参考系统模版去制作一个。 
+</code></pre><h5 id="TemplateInfo-plist"><a href="#TemplateInfo-plist" class="headerlink" title="TemplateInfo.plist"></a>TemplateInfo.plist</h5><p>查看简书的描述信息。<br>主要设置三个值，父类，子类的默认名，是否打开xib。</p>
+<h5 id="u4F7F_u7528_u3002"><a href="#u4F7F_u7528_u3002" class="headerlink" title="使用。"></a>使用。</h5><p>创建一个子类，使用MSTemplate,可快速创建一个带有自定义注释子类。</p>
+<h5 id="u65B0_u589E_u6A21_u7248_u5E38_u89C1_u95EE_u9898_u8BF4_u660E"><a href="#u65B0_u589E_u6A21_u7248_u5E38_u89C1_u95EE_u9898_u8BF4_u660E" class="headerlink" title="新增模版常见问题说明"></a>新增模版常见问题说明</h5><ol>
+<li><p>目录查找错误。</p>
+<p> ~/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates，注意Platforms而不是Developer下的Libraty。</p>
+</li>
+</ol>
+<ol>
+<li><p>新建模版是显示错误位置。</p>
+<p> 可能加入到MAC OS上去了，注意看自己在哪个部分新增模版。</p>
+</li>
+<li><p>模板新增成功，但是新增子类时新增不上去。</p>
+<p> 新增成功，但是子类加不到prj上，可能是对应的xib文件没有，或者文件没有书写完成，可从系统的template复制一份，再修改代码来实现。</p>
+</li>
+<li><p>系统模版的修改。</p>
+<p> 这个须特别注意，系统提供的模版不能编辑，没有写的权限，不能在原来的基础上修改。</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。</p>
+<p><strong>当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以]]>
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+      <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[知识点汇总（六）]]></title>
@@ -658,73 +736,6 @@
       <category term="block" scheme="http://yoursite.com/tags/block/"/>
     
       <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-      <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[iOS 绘制不规则的图形]]></title>
-    <link href="http://yoursite.com/2016/01/22/misheral-five/"/>
-    <id>http://yoursite.com/2016/01/22/misheral-five/</id>
-    <published>2016-01-22T06:00:17.000Z</published>
-    <updated>2016-01-22T06:08:38.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="u903B_u8F91_u5206_u6790"><a href="#u903B_u8F91_u5206_u6790" class="headerlink" title="逻辑分析"></a>逻辑分析</h4><p>主要的逻辑：</p>
-<ol>
-<li>设置不规则图形的顶点；</li>
-<li>获取当前的上下文；</li>
-<li>CGContextBeginPath(context);</li>
-<li>顶点连线；</li>
-<li>设置填充颜色；</li>
-<li>CGContextClosePath(context);</li>
-<li>填充颜色；</li>
-</ol>
-<h4 id="u5177_u4F53_u4EE3_u7801"><a href="#u5177_u4F53_u4EE3_u7801" class="headerlink" title="具体代码"></a>具体代码</h4><p>设置一个属性为points，在set方法内去调用重新绘制图形；</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setPoints:(<span class="built_in">NSArray</span> *)points&#123;</span><br><span class="line">    _points = points;</span><br><span class="line">    [<span class="keyword">self</span> setNeedsDisplay];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重写UIView的方法drawRect:,实现绘图；</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect&#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> p[<span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span> &lt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span>; i ++) &#123;</span><br><span class="line">        <span class="built_in">CGPoint</span> tempPoint = <span class="built_in">CGPointFromString</span>([<span class="keyword">self</span><span class="variable">.points</span> objectAtIndex:i]);</span><br><span class="line">        p[i]<span class="variable">.x</span> = tempPoint<span class="variable">.x</span>;</span><br><span class="line">        p[i]<span class="variable">.y</span> = tempPoint<span class="variable">.y</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">    <span class="built_in">CGContextBeginPath</span>(context);</span><br><span class="line">    <span class="built_in">CGContextAddLines</span>(context, p, <span class="keyword">self</span><span class="variable">.points</span><span class="variable">.count</span>);</span><br><span class="line">    [[<span class="built_in">UIColor</span> colorWithRed:<span class="number">39</span>/<span class="number">255.0</span> green:<span class="number">170</span>/<span class="number">255.0</span> blue:<span class="number">226</span>/<span class="number">255.0</span> alpha:<span class="number">1</span>] setFill];</span><br><span class="line">    <span class="built_in">CGContextClosePath</span>(context);</span><br><span class="line">    <span class="built_in">CGContextFillPath</span>(context);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：CGContextAddLines这个方法的第二个参数是个C的数组，也可以说是指针；</p>
-<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>经常会忘记的，就是beginPath这个动作，和closePath是成对出现的。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[iOS用CG绘制图形]]>
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-      <category term="绘图" scheme="http://yoursite.com/tags/%E7%BB%98%E5%9B%BE/"/>
-    
-      <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[iOS 原子操作autolically]]></title>
-    <link href="http://yoursite.com/2016/01/21/misheral-four/"/>
-    <id>http://yoursite.com/2016/01/21/misheral-four/</id>
-    <published>2016-01-21T09:55:31.000Z</published>
-    <updated>2016-01-22T05:57:45.000Z</updated>
-    <content type="html"><![CDATA[<p>备注以前认识的一个错误，关于iOS开发中原子的操作的问题；</p>
-<h4 id="API__u5185_u7684_u65B9_u6CD5_u8BF4_u660E"><a href="#API__u5185_u7684_u65B9_u6CD5_u8BF4_u660E" class="headerlink" title="API 内的方法说明"></a>API 内的方法说明</h4><p>在NSData的writeToFile: autolically这个方法中看到API中这样一段解释：</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flag </span><br><span class="line"></span><br><span class="line">If YES, the<span class="instruction"> array </span>is written to an auxiliary file,<span class="instruction"> and </span>then the auxiliary file is renamed to path. If NO, the<span class="instruction"> array </span>is written directly to path. The YES option guarantees that path,<span class="instruction"> if </span>it exists at all, won’t be corrupted even<span class="instruction"> if </span>the<span class="keyword"> system</span> should crash during writing.</span><br></pre></td></tr></table></figure>
-<p>大意为：</p>
-<ol>
-<li>flag设置为YES，在往文件写入东西时，我们会创建一个辅助的文件写入数据，写入完成之后，再修改为正确的路径；</li>
-<li>当为NO时，直接写入文件，即便系统崩溃也不会中断，即有可能出现受污染的数据；</li>
-</ol>
-<p>通常在读写文件的时候，为了防止意外造成数据污染，参数直接写为YES。</p>
-<h4 id="u81EA_u5DF1_u7684_u89C1_u89E3"><a href="#u81EA_u5DF1_u7684_u89C1_u89E3" class="headerlink" title="自己的见解"></a>自己的见解</h4><p>在修饰属性的时候，我们也经常会看到nonautomic这个修饰词，非原子的操作，这里没有使用原子操作的原因在于指针的操作都是瞬时的，原子非原子的操作都无所谓，我们约定一般都使用非原子的。</p>
-<h4 id="u7EA0_u6B63_u9519_u8BEF"><a href="#u7EA0_u6B63_u9519_u8BEF" class="headerlink" title="纠正错误"></a>纠正错误</h4><p>貌似我以前的认知中，这个属性是操作于是否可以并发访问一个属性的，但是想想，我们经常并发访问一个属性，倒也没什么影响，认识错误，纠正一下。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[iOS开发过程中碰到的原子操作属性]]>
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-      <category term="原子操作" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/"/>
     
       <category term="iOS开发" scheme="http://yoursite.com/categories/iOS%E5%BC%80%E5%8F%91/"/>
     

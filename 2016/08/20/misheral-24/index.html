@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Xcode7 创建自定义模板 - Misheral&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。
+当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。
+具体使用，可查看如下连接：http://www.jianshu.com/p/93527682d8d3
+虽然有些许的错误，但是整体流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xcode7 创建自定义模板">
+<meta property="og:url" content="http://yoursite.com/2016/08/20/misheral-24/index.html">
+<meta property="og:site_name" content="Misheral's blog">
+<meta property="og:description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。
+当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。
+具体使用，可查看如下连接：http://www.jianshu.com/p/93527682d8d3
+虽然有些许的错误，但是整体流程">
+<meta property="og:updated_time" content="2016-08-25T07:10:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xcode7 创建自定义模板">
+<meta name="twitter:description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。
+当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。
+具体使用，可查看如下连接：http://www.jianshu.com/p/93527682d8d3
+虽然有些许的错误，但是整体流程">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">概览</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/about">关于我</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-misheral-24" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Xcode7 创建自定义模板
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/08/20/misheral-24/" class="article-date">
+  <time datetime="2016-08-20T06:31:50.000Z" itemprop="datePublished">2016-08-20</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。</p>
+<p><strong>当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。</strong></p>
+<p>具体使用，可查看如下连接：<br><a href="http://www.jianshu.com/p/93527682d8d3" target="_blank" rel="external">http://www.jianshu.com/p/93527682d8d3</a></p>
+<p>虽然有些许的错误，但是整体流程是OK的。</p>
+<h5 id="u5904_u7406_u8FC7_u7A0B"><a href="#u5904_u7406_u8FC7_u7A0B" class="headerlink" title="处理过程"></a>处理过程</h5><p>接下来，看处理过程：</p>
+<ol>
+<li><p>获取模版路径</p>
+<p> 系统模版的路径为~/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates<br> File Templates下包含Apple Watch,Resource,Source,User Interface,四个目录，对应了新增文件时，iOS下的几个分级目录。比如，我们想查看CocoaTouch下对应的内容，我们可以看Cocoa Touch Class.xctemplate这个模版。<br> <strong>通常,我们会在Source下新增新的模版。</strong></p>
+<p>将 MSTemplate.xctemplate文件夹放到Source系统模板文件夹中，就会在New File时出现在对应的选项中。 在往里面copy文件时，系统会提示你输入管理员密码，输入密码进行处理。</p>
+</li>
+<li><p>template内容介绍   </p>
+<p> MSTemplate.xctemplate 处理的是对UIViewController的模块修改。MSTemplate.xctemplate文件夹包含了</p>
+<p> 假设已经将MSTemplate.xctemplate放入了Source文件夹中，查看MSTemplate.xctemplate中有TemplateIcon.png,TemplateIcon@2x.png,TemplateInfo.plis以及UIViewControllerXIBObjective-C文件夹，UIViewControllerXIBObjective-C文件夹内包含三个文件<strong><em>FILEBASENAME</em></strong>.h,<strong><em>FILEBASENAME</em></strong>.m, <strong><em>FILEBASENAME</em></strong>.xib。</p>
+<p> （1）UIViewControllerObjective-C 文件夹<br>用来创建.h 和 .m文件。 其中文件夹的命名规范是[name]+Objective-C. 如果是创建swift修改为swift。<br>（2）UIViewControllerXibObjective-C文件夹<br>用来创建.h，.m和.xib文件。其中文件夹的命名规范是[name]+XibObjective-C. swift类似。<br>（3）TemplateIcon图片<br>图片是用来显示在New File的菜单上的。任意放一个自己喜欢的图片，像素138*138即可。<br>（4）TemplateInfo.plist配置文件。下面单独讲讲。</p>
+</li>
+</ol>
+<ol>
+<li><p>头文件和实现的说明。</p>
+<pre><code>___FILEBASENAME___.h代码如下
+</code></pre></li>
+</ol>
+<pre><code><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">          <span class="comment">//</span></span><br><span class="line"><span class="comment">//  ___FILENAME___</span></span><br><span class="line"><span class="comment">//  ___PROJECTNAME___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by ___FULLUSERNAME___ on ___DATE___.</span></span><br><span class="line"><span class="comment">//___COPYRIGHT___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line">___I<span class="built_in">MPORTHEADER_cocoaTouchSubclass___</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">___FILEBASENAMEASIDENTIFIER___</span> : <span class="title">___VARIABLE_cocoaTouchSubclass___</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+
+ ___FILEBASENAME___.m 代码如下
+
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">//</span></span><br><span class="line"><span class="comment">//  ___FILENAME___</span></span><br><span class="line"><span class="comment">//  ___PROJECTNAME___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by ___FULLUSERNAME___ on ___DATE___.</span></span><br><span class="line"><span class="comment">//___COPYRIGHT___</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#import <span class="title">"___FILEBASENAME___.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">___FILEBASENAMEASIDENTIFIER___</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">___FILEBASENAMEASIDENTIFIER___</span></span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#pragma mark  lifecycle</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="comment">// Do any additional setup after loading the view.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning &#123;</span><br><span class="line">    [<span class="keyword">super</span> didReceiveMemoryWarning];</span><br><span class="line">    <span class="comment">// Dispose of any resources that can be recreated.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewWillAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#pragma mark btn event</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//back button clicked</span></span><br><span class="line">- (<span class="keyword">void</span>)doBack:(<span class="built_in">UIButton</span> *)sender&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+xib 文件可参考系统模版去制作一个。 
+</code></pre><h5 id="TemplateInfo-plist"><a href="#TemplateInfo-plist" class="headerlink" title="TemplateInfo.plist"></a>TemplateInfo.plist</h5><p>查看简书的描述信息。<br>主要设置三个值，父类，子类的默认名，是否打开xib。</p>
+<h5 id="u4F7F_u7528_u3002"><a href="#u4F7F_u7528_u3002" class="headerlink" title="使用。"></a>使用。</h5><p>创建一个子类，使用MSTemplate,可快速创建一个带有自定义注释子类。</p>
+<h5 id="u65B0_u589E_u6A21_u7248_u5E38_u89C1_u95EE_u9898_u8BF4_u660E"><a href="#u65B0_u589E_u6A21_u7248_u5E38_u89C1_u95EE_u9898_u8BF4_u660E" class="headerlink" title="新增模版常见问题说明"></a>新增模版常见问题说明</h5><ol>
+<li><p>目录查找错误。</p>
+<p> ~/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates，注意Platforms而不是Developer下的Libraty。</p>
+</li>
+</ol>
+<ol>
+<li><p>新建模版是显示错误位置。</p>
+<p> 可能加入到MAC OS上去了，注意看自己在哪个部分新增模版。</p>
+</li>
+<li><p>模板新增成功，但是新增子类时新增不上去。</p>
+<p> 新增成功，但是子类加不到prj上，可能是对应的xib文件没有，或者文件没有书写完成，可从系统的template复制一份，再修改代码来实现。</p>
+</li>
+<li><p>系统模版的修改。</p>
+<p> 这个须特别注意，系统提供的模版不能编辑，没有写的权限，不能在原来的基础上修改。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/25/misheral-25/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          misheral-25
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/05/misheral-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">知识点汇总（六）&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Misheral Yao&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
