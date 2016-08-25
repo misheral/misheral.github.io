@@ -19,7 +19,7 @@
 当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。
 具体使用，可查看如下连接：http://www.jianshu.com/p/93527682d8d3
 虽然有些许的错误，但是整体流程是OK的。">
-<meta property="og:updated_time" content="2016-08-25T07:21:29.000Z">
+<meta property="og:updated_time" content="2016-08-25T07:22:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode7 创建自定义模板">
 <meta name="twitter:description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。
@@ -108,7 +108,7 @@
 <li><p>template内容介绍   </p>
 <p> MSTemplate.xctemplate 处理的是对UIViewController的模块修改。MSTemplate.xctemplate文件夹包含了</p>
 <p> 假设已经将MSTemplate.xctemplate放入了Source文件夹中，查看MSTemplate.xctemplate中有TemplateIcon.png,TemplateIcon@2x.png,TemplateInfo.plis以及UIViewControllerXIBObjective-C文件夹，UIViewControllerXIBObjective-C文件夹内包含三个文件</p>
-<p> <strong><em>FILEBASENAME</em></strong>.h,<strong><em>FILEBASENAME</em></strong>.m, <strong><em>FILEBASENAME</em></strong>.xib。</p>
+<p> <strong>_<em>FILEBASENAME</em></strong>.h,<strong><em>FILEBASENAME</em></strong>.m, <strong><em>FILEBASENAME</em></strong>.xib。</p>
 <p> （1）UIViewControllerObjective-C 文件夹<br>用来创建.h 和 .m文件。 其中文件夹的命名规范是[name]+Objective-C. 如果是创建swift修改为swift。</p>
 </li>
 </ol>
