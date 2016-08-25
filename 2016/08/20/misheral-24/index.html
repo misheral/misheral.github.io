@@ -5,25 +5,28 @@
   
   <title>Xcode7 创建自定义模板 - Misheral&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。
+  <meta name="description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。
+因此就想写一个模版。
 当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。
 具体使用，可查看如下连接：http://www.jianshu.com/p/93527682d8d3
-虽然有些许的错误，但是整体流程">
+虽然有些许的错误，但是整体流程是OK的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xcode7 创建自定义模板">
 <meta property="og:url" content="http://yoursite.com/2016/08/20/misheral-24/index.html">
 <meta property="og:site_name" content="Misheral's blog">
-<meta property="og:description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。
+<meta property="og:description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。
+因此就想写一个模版。
 当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。
 具体使用，可查看如下连接：http://www.jianshu.com/p/93527682d8d3
-虽然有些许的错误，但是整体流程">
-<meta property="og:updated_time" content="2016-08-25T07:10:42.000Z">
+虽然有些许的错误，但是整体流程是OK的。">
+<meta property="og:updated_time" content="2016-08-25T07:15:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode7 创建自定义模板">
-<meta name="twitter:description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。
+<meta name="twitter:description" content="在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。
+因此就想写一个模版。
 当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。
 具体使用，可查看如下连接：http://www.jianshu.com/p/93527682d8d3
-虽然有些许的错误，但是整体流程">
+虽然有些许的错误，但是整体流程是OK的。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -90,14 +93,16 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。因此就想写一个template。</p>
+        <p>在一个多人开发的项目中，相同的代码风格，不仅增强了易读性，而且调理清晰，容易理解，在后期维护过程中，也容易修改。</p>
+<p>因此就想写一个模版。</p>
 <p><strong>当然，并不是说用了自定义的模版就一定是好的，有些方法可能是我们不需要的，不想暴漏出来，那么我们可以用代码块的形式去处理。</strong></p>
 <p>具体使用，可查看如下连接：<br><a href="http://www.jianshu.com/p/93527682d8d3" target="_blank" rel="external">http://www.jianshu.com/p/93527682d8d3</a></p>
 <p>虽然有些许的错误，但是整体流程是OK的。</p>
 <h5 id="u5904_u7406_u8FC7_u7A0B"><a href="#u5904_u7406_u8FC7_u7A0B" class="headerlink" title="处理过程"></a>处理过程</h5><p>接下来，看处理过程：</p>
 <ol>
 <li><p>获取模版路径</p>
-<p> 系统模版的路径为~/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates<br> File Templates下包含Apple Watch,Resource,Source,User Interface,四个目录，对应了新增文件时，iOS下的几个分级目录。比如，我们想查看CocoaTouch下对应的内容，我们可以看Cocoa Touch Class.xctemplate这个模版。<br> <strong>通常,我们会在Source下新增新的模版。</strong></p>
+<p> 系统模版的路径为~/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates,File Templates下包含Apple Watch,Resource,Source,User Interface,四个目录，对应了新增文件时，iOS下的几个分级目录。比如，我们想查看CocoaTouch下对应的内容，我们可以看Cocoa Touch Class.xctemplate这个模版。</p>
+<p> <strong>通常情况下,我们会在Source下新增新的模版。</strong></p>
 <p>将 MSTemplate.xctemplate文件夹放到Source系统模板文件夹中，就会在New File时出现在对应的选项中。 在往里面copy文件时，系统会提示你输入管理员密码，输入密码进行处理。</p>
 </li>
 <li><p>template内容介绍   </p>
